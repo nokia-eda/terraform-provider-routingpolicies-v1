@@ -1,0 +1,85 @@
+datasources:
+  - model_name: app_group
+    oas_endpoint: /apps/routingpolicies.eda.nokia.com
+    oas_schema: AppGroup
+  - model_name: resource_list
+    oas_endpoint: /apps/routingpolicies.eda.nokia.com/v1
+    oas_schema: ResourceList
+  - model_name: as_path_set_list
+    oas_endpoint: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/aspathsets
+    oas_schema: com.nokia.eda.routingpolicies.v1.ASPathSetList
+  - model_name: as_path_set
+    oas_endpoint: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/aspathsets/{name}
+    oas_schema: com.nokia.eda.routingpolicies.v1.ASPathSet
+  - model_name: community_set_list
+    oas_endpoint: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/communitysets
+    oas_schema: com.nokia.eda.routingpolicies.v1.CommunitySetList
+  - model_name: community_set
+    oas_endpoint: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/communitysets/{name}
+    oas_schema: com.nokia.eda.routingpolicies.v1.CommunitySet
+  - model_name: policy_list
+    oas_endpoint: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/policys
+    oas_schema: com.nokia.eda.routingpolicies.v1.PolicyList
+  - model_name: policy
+    oas_endpoint: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/policys/{name}
+    oas_schema: com.nokia.eda.routingpolicies.v1.Policy
+  - model_name: prefix_set_list
+    oas_endpoint: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/prefixsets
+    oas_schema: com.nokia.eda.routingpolicies.v1.PrefixSetList
+  - model_name: prefix_set
+    oas_endpoint: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/prefixsets/{name}
+    oas_schema: com.nokia.eda.routingpolicies.v1.PrefixSet
+  - model_name: tag_set_deployment_list
+    oas_endpoint: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments
+    oas_schema: com.nokia.eda.routingpolicies.v1.TagSetDeploymentList
+  - model_name: tag_set_deployment
+    oas_endpoint: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments/{name}
+    oas_schema: com.nokia.eda.routingpolicies.v1.TagSetDeployment
+  - model_name: tag_set_list
+    oas_endpoint: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsets
+    oas_schema: com.nokia.eda.routingpolicies.v1.TagSetList
+  - model_name: tag_set
+    oas_endpoint: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsets/{name}
+    oas_schema: com.nokia.eda.routingpolicies.v1.TagSet
+
+resources:
+  - model_name: as_path_set
+    oas_endpoint: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/aspathsets
+    oas_schema: com.nokia.eda.routingpolicies.v1.ASPathSet
+  - model_name: community_set
+    oas_endpoint: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/communitysets
+    oas_schema: com.nokia.eda.routingpolicies.v1.CommunitySet
+  - model_name: policy
+    oas_endpoint: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/policys
+    oas_schema: com.nokia.eda.routingpolicies.v1.Policy
+  - model_name: prefix_set
+    oas_endpoint: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/prefixsets
+    oas_schema: com.nokia.eda.routingpolicies.v1.PrefixSet
+  - model_name: tag_set_deployment
+    oas_endpoint: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments
+    oas_schema: com.nokia.eda.routingpolicies.v1.TagSetDeployment
+  - model_name: tag_set
+    oas_endpoint: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsets
+    oas_schema: com.nokia.eda.routingpolicies.v1.TagSet
+
+qualified:
+  datasources:
+    - oas_schema: IntentTargets
+      get: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/aspathsets/{name}/_targets
+    - oas_schema: ResourceHistory
+      get: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/aspathsets/{name}/_revs
+    - oas_schema: UIResult
+      get: /apps/routingpolicies.eda.nokia.com/v1/_ui/{pathname}
+    - oas_schema: com.nokia.eda.routingpolicies.v1.ASPathSet_DeletedResources
+      get: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/aspathsets/_deleted
+    - oas_schema: com.nokia.eda.routingpolicies.v1.CommunitySet_DeletedResources
+      get: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/communitysets/_deleted
+    - oas_schema: com.nokia.eda.routingpolicies.v1.Policy_DeletedResources
+      get: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/policys/_deleted
+    - oas_schema: com.nokia.eda.routingpolicies.v1.PrefixSet_DeletedResources
+      get: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/prefixsets/_deleted
+    - oas_schema: com.nokia.eda.routingpolicies.v1.TagSetDeployment_DeletedResources
+      get: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments/_deleted
+    - oas_schema: com.nokia.eda.routingpolicies.v1.TagSet_DeletedResources
+      get: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsets/_deleted
+  resources:
