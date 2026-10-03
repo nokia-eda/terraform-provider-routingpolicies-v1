@@ -23,7 +23,6 @@ description: |-
 ### Optional
 
 - `hash` (String) resource content will be returned as it was at the time of this git hash
-- `spec` (Attributes) CommunitySetSpec defines the desired state of CommunitySet (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -32,18 +31,8 @@ description: |-
 - `deviations` (Attributes) (see [below for nested schema](#nestedatt--deviations))
 - `kind` (String)
 - `metadata` (Attributes) (see [below for nested schema](#nestedatt--metadata))
+- `spec` (Attributes) CommunitySetSpec defines the desired state of CommunitySet (see [below for nested schema](#nestedatt--spec))
 - `status` (Attributes) CommunitySetStatus defines the observed state of CommunitySet (see [below for nested schema](#nestedatt--status))
-
-<a id="nestedatt--spec"></a>
-### Nested Schema for `spec`
-
-Optional:
-
-- `configured_name` (String) The name of the commmunityset to configure on the device.
-- `expression_match` (String) Options that determine the matching criteria that applies to the list of community members.
-- `match_set_options` (String) The matching criteria that applies to the Members list.
-- `members` (List of String) A standard BGP community value, regular expression or well-known name or else a large BGP community value or regular expression.
-
 
 <a id="nestedatt--alarms"></a>
 ### Nested Schema for `alarms`
@@ -73,6 +62,18 @@ Read-Only:
 - `labels` (Map of String)
 - `name` (String)
 - `namespace` (String)
+
+
+<a id="nestedatt--spec"></a>
+### Nested Schema for `spec`
+
+Read-Only:
+
+- `configured_name` (String) The name of the commmunityset to configure on the device.
+- `expression_match` (String) Options that determine the matching criteria that applies to the list of community members.
+- `match_set_options` (String) The matching criteria that applies to the Members list.
+- `members` (List of String) A standard BGP community value, regular expression or well-known name or else a large BGP community value or regular expression.
+- `type` (String) The type of community set.
 
 
 <a id="nestedatt--status"></a>

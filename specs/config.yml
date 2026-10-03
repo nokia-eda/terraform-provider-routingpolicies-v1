@@ -57,16 +57,6 @@ data_sources:
       path: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsets/{name}
       method: GET
 
-  tag_set_deployment:
-    read:
-      path: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments/{name}
-      method: GET
-
-  tag_set_deployment_list:
-    read:
-      path: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments
-      method: GET
-
   tag_set_list:
     read:
       path: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsets
@@ -141,18 +131,4 @@ resources:
       method: PUT
     delete:
       path: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsets/{name}
-      method: DELETE
-
-  tag_set_deployment:
-    create:
-      path: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments
-      method: POST
-    read:
-      path: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments/{name}
-      method: GET
-    update:
-      path: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments/{name}
-      method: PUT
-    delete:
-      path: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments/{name}
       method: DELETE

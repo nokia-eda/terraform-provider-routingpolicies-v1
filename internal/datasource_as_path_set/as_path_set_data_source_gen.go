@@ -103,12 +103,12 @@ func AsPathSetDataSourceSchema(ctx context.Context) schema.Schema {
 				Attributes: map[string]schema.Attribute{
 					"members": schema.ListAttribute{
 						ElementType:         types.StringType,
-						Optional:            true,
+						Computed:            true,
 						Description:         "Members is a list of AS path regular expressions.",
 						MarkdownDescription: "Members is a list of AS path regular expressions.",
 					},
 					"regex_mode": schema.StringAttribute{
-						Optional:            true,
+						Computed:            true,
 						Description:         "Defines how AS_PATH attribute is converted into a string for regex matching.",
 						MarkdownDescription: "Defines how AS_PATH attribute is converted into a string for regex matching.",
 					},
@@ -118,7 +118,7 @@ func AsPathSetDataSourceSchema(ctx context.Context) schema.Schema {
 						AttrTypes: SpecValue{}.AttributeTypes(ctx),
 					},
 				},
-				Optional:            true,
+				Computed:            true,
 				Description:         "ASPathSetSpec defines the desired state of ASPathSet",
 				MarkdownDescription: "ASPathSetSpec defines the desired state of ASPathSet",
 			},

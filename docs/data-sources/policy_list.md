@@ -35,10 +35,6 @@ description: |-
 <a id="nestedatt--items"></a>
 ### Nested Schema for `items`
 
-Optional:
-
-- `spec` (Attributes) Policy defines a set of rules and actions to manage network traffic or routing behavior, with statements that include matching conditions and actions, such as accepting or rejecting routes, or modifying route attributes like BGP parameters. (see [below for nested schema](#nestedatt--items--spec))
-
 Read-Only:
 
 - `alarms` (Attributes) (see [below for nested schema](#nestedatt--items--alarms))
@@ -46,209 +42,8 @@ Read-Only:
 - `deviations` (Attributes) (see [below for nested schema](#nestedatt--items--deviations))
 - `kind` (String)
 - `metadata` (Attributes) (see [below for nested schema](#nestedatt--items--metadata))
+- `spec` (Attributes) Policy defines a set of rules and actions to manage network traffic or routing behavior, with statements that include matching conditions and actions, such as accepting or rejecting routes, or modifying route attributes like BGP parameters. (see [below for nested schema](#nestedatt--items--spec))
 - `status` (Attributes) PolicyStatus defines the observed state of Policy. (see [below for nested schema](#nestedatt--items--status))
-
-<a id="nestedatt--items--spec"></a>
-### Nested Schema for `items.spec`
-
-Optional:
-
-- `configured_name` (String) The name of the policy to configure on the device.
-- `default_action` (Attributes) The default action to apply if no other actions are defined. (see [below for nested schema](#nestedatt--items--spec--default_action))
-- `statements` (Attributes List) List of policy statements. (see [below for nested schema](#nestedatt--items--spec--statements))
-
-<a id="nestedatt--items--spec--default_action"></a>
-### Nested Schema for `items.spec.default_action`
-
-Optional:
-
-- `bgp` (Attributes) Actions related to the BGP protocol. (see [below for nested schema](#nestedatt--items--spec--default_action--bgp))
-- `policy_result` (String) Final disposition for the route.
-- `tags` (Attributes) Manipulate internal route tags associated with the route. (see [below for nested schema](#nestedatt--items--spec--default_action--tags))
-
-<a id="nestedatt--items--spec--default_action--bgp"></a>
-### Nested Schema for `items.spec.default_action.bgp`
-
-Optional:
-
-- `as_path_prepend` (Attributes) AS number to prepend to the AS Path attributes. (see [below for nested schema](#nestedatt--items--spec--default_action--bgp--as_path_prepend))
-- `as_path_remove` (Boolean) Clear the AS path to make it empty.
-- `as_path_replace` (List of Number) Replace the existing AS path with a new AS_SEQUENCE containing the listed AS numbers.
-- `communities` (Attributes) Modify BGP communities associated with the route using hybrid Community Sets. (see [below for nested schema](#nestedatt--items--spec--default_action--bgp--communities))
-- `med` (Attributes) Set a new MED value. (see [below for nested schema](#nestedatt--items--spec--default_action--bgp--med))
-- `next_hop` (Attributes) Override the BGP next-hop attribute. (see [below for nested schema](#nestedatt--items--spec--default_action--bgp--next_hop))
-- `set_local_preference` (Number) Set a new LOCAL_PREF value for matching BGP routes.
-- `set_origin` (String) Set a new ORIGIN attribute for matching BGP routes.
-
-<a id="nestedatt--items--spec--default_action--bgp--as_path_prepend"></a>
-### Nested Schema for `items.spec.default_action.bgp.as_path_prepend`
-
-Optional:
-
-- `asn` (String) AS number to prepend to the AS Path attributes. Can be an integer value or the keyword `Auto`.
-- `count` (Number) Number of times to prepend the AS number.
-
-
-<a id="nestedatt--items--spec--default_action--bgp--communities"></a>
-### Nested Schema for `items.spec.default_action.bgp.communities`
-
-Optional:
-
-- `add_sets` (List of String) List of community sets to add to the route.
-- `remove_sets` (List of String) List of community sets to remove from the route.
-- `replace_sets` (List of String) List of community sets to replace the existing communities with. Cannot be combined with Add or Remove.
-
-
-<a id="nestedatt--items--spec--default_action--bgp--med"></a>
-### Nested Schema for `items.spec.default_action.bgp.med`
-
-Optional:
-
-- `numerical_value` (Number) Fixed numerical value to set or add/subtract.
-- `operation` (String) The operation to perform on the MED value.
-- `value_type` (String) Use a fixed value or an IGP metric to adjust the MED.
-
-
-<a id="nestedatt--items--spec--default_action--bgp--next_hop"></a>
-### Nested Schema for `items.spec.default_action.bgp.next_hop`
-
-Optional:
-
-- `address` (String) IP Address of the next hop. Only valid when NextHopType is set to FixedIP.
-- `type` (String) Set next-hop to either a fixed IP address or to a local IP address of the device using a `Self` or `PeerIP` keyword.
-
-
-
-<a id="nestedatt--items--spec--default_action--tags"></a>
-### Nested Schema for `items.spec.default_action.tags`
-
-Optional:
-
-- `apply_tag_set` (String) Add tags to the route from the referenced Tag Set.
-
-
-
-<a id="nestedatt--items--spec--statements"></a>
-### Nested Schema for `items.spec.statements`
-
-Optional:
-
-- `action` (Attributes) Actions for routes that match the policy statement. (see [below for nested schema](#nestedatt--items--spec--statements--action))
-- `match` (Attributes) Match conditions of the policy statement. (see [below for nested schema](#nestedatt--items--spec--statements--match))
-- `name` (String) Name of the policy statement.
-
-<a id="nestedatt--items--spec--statements--action"></a>
-### Nested Schema for `items.spec.statements.action`
-
-Optional:
-
-- `bgp` (Attributes) Actions related to the BGP protocol. (see [below for nested schema](#nestedatt--items--spec--statements--action--bgp))
-- `policy_result` (String) Final disposition for the route.
-- `tags` (Attributes) Manipulate internal route tags associated with the route. (see [below for nested schema](#nestedatt--items--spec--statements--action--tags))
-
-<a id="nestedatt--items--spec--statements--action--bgp"></a>
-### Nested Schema for `items.spec.statements.action.bgp`
-
-Optional:
-
-- `as_path_prepend` (Attributes) AS number to prepend to the AS Path attributes. (see [below for nested schema](#nestedatt--items--spec--statements--action--bgp--as_path_prepend))
-- `as_path_remove` (Boolean) Clear the AS path to make it empty.
-- `as_path_replace` (List of Number) Replace the existing AS path with a new AS_SEQUENCE containing the listed AS numbers.
-- `communities` (Attributes) Modify BGP communities associated with the route using hybrid Community Sets. (see [below for nested schema](#nestedatt--items--spec--statements--action--bgp--communities))
-- `med` (Attributes) Set a new MED value. (see [below for nested schema](#nestedatt--items--spec--statements--action--bgp--med))
-- `next_hop` (Attributes) Override the BGP next-hop attribute. (see [below for nested schema](#nestedatt--items--spec--statements--action--bgp--next_hop))
-- `set_local_preference` (Number) Set a new LOCAL_PREF value for matching BGP routes.
-- `set_origin` (String) Set a new ORIGIN attribute for matching BGP routes.
-
-<a id="nestedatt--items--spec--statements--action--bgp--as_path_prepend"></a>
-### Nested Schema for `items.spec.statements.action.bgp.as_path_prepend`
-
-Optional:
-
-- `asn` (String) AS number to prepend to the AS Path attributes. Can be an integer value or the keyword `Auto`.
-- `count` (Number) Number of times to prepend the AS number.
-
-
-<a id="nestedatt--items--spec--statements--action--bgp--communities"></a>
-### Nested Schema for `items.spec.statements.action.bgp.communities`
-
-Optional:
-
-- `add_sets` (List of String) List of community sets to add to the route.
-- `remove_sets` (List of String) List of community sets to remove from the route.
-- `replace_sets` (List of String) List of community sets to replace the existing communities with. Cannot be combined with Add or Remove.
-
-
-<a id="nestedatt--items--spec--statements--action--bgp--med"></a>
-### Nested Schema for `items.spec.statements.action.bgp.med`
-
-Optional:
-
-- `numerical_value` (Number) Fixed numerical value to set or add/subtract.
-- `operation` (String) The operation to perform on the MED value.
-- `value_type` (String) Use a fixed value or an IGP metric to adjust the MED.
-
-
-<a id="nestedatt--items--spec--statements--action--bgp--next_hop"></a>
-### Nested Schema for `items.spec.statements.action.bgp.next_hop`
-
-Optional:
-
-- `address` (String) IP Address of the next hop. Only valid when NextHopType is set to FixedIP.
-- `type` (String) Set next-hop to either a fixed IP address or to a local IP address of the device using a `Self` or `PeerIP` keyword.
-
-
-
-<a id="nestedatt--items--spec--statements--action--tags"></a>
-### Nested Schema for `items.spec.statements.action.tags`
-
-Optional:
-
-- `apply_tag_set` (String) Add tags to the route from the referenced Tag Set.
-
-
-
-<a id="nestedatt--items--spec--statements--match"></a>
-### Nested Schema for `items.spec.statements.match`
-
-Optional:
-
-- `bgp` (Attributes) Configuration for BGP-specific policy match criteria. (see [below for nested schema](#nestedatt--items--spec--statements--match--bgp))
-- `families` (List of String) Address families that the route belongs to.
-- `prefix_set` (String) Reference to a PrefixSet resource.
-- `protocol` (String) The route protocol type to match.
-- `tags` (Attributes) Match based on the internal route tags associated with the route. (see [below for nested schema](#nestedatt--items--spec--statements--match--tags))
-
-<a id="nestedatt--items--spec--statements--match--bgp"></a>
-### Nested Schema for `items.spec.statements.match.bgp`
-
-Optional:
-
-- `as_path_match` (Attributes) AS Path match criteria. (see [below for nested schema](#nestedatt--items--spec--statements--match--bgp--as_path_match))
-- `community_set` (String) Match conditions for BGP communities.
-- `evpn_route_types` (List of Number) Match conditions for EVPN route types.
-
-<a id="nestedatt--items--spec--statements--match--bgp--as_path_match"></a>
-### Nested Schema for `items.spec.statements.match.bgp.as_path_match`
-
-Optional:
-
-- `as_path_expression` (String) A singular regular expression string to match against AS_PATH objects. Mutually exclusive with the ASPathSet reference.
-- `as_path_set` (String) Reference to an ASPathSet resource. Mutually exclusive with the ASPathExpression.
-- `match_set_options` (String) The matching criteria that applies to the members in the referenced set.
-
-
-
-<a id="nestedatt--items--spec--statements--match--tags"></a>
-### Nested Schema for `items.spec.statements.match.tags`
-
-Optional:
-
-- `tag_set` (String) Reference to a TagSet resource.
-
-
-
-
 
 <a id="nestedatt--items--alarms"></a>
 ### Nested Schema for `items.alarms`
@@ -278,6 +73,220 @@ Read-Only:
 - `labels` (Map of String)
 - `name` (String)
 - `namespace` (String)
+
+
+<a id="nestedatt--items--spec"></a>
+### Nested Schema for `items.spec`
+
+Read-Only:
+
+- `configured_name` (String) The name of the policy to configure on the device.
+- `default_action` (Attributes) The default action to apply if no other actions are defined. (see [below for nested schema](#nestedatt--items--spec--default_action))
+- `statements` (Attributes List) List of policy statements. (see [below for nested schema](#nestedatt--items--spec--statements))
+
+<a id="nestedatt--items--spec--default_action"></a>
+### Nested Schema for `items.spec.default_action`
+
+Read-Only:
+
+- `bgp` (Attributes) Actions related to the BGP protocol. (see [below for nested schema](#nestedatt--items--spec--default_action--bgp))
+- `policy_result` (String) Final disposition for the route.
+- `set_route_preference` (Number) Set the RTM route preference (administrative distance) value.
+- `tags` (Attributes) Manipulate internal route tags associated with the route. (see [below for nested schema](#nestedatt--items--spec--default_action--tags))
+
+<a id="nestedatt--items--spec--default_action--bgp"></a>
+### Nested Schema for `items.spec.default_action.bgp`
+
+Read-Only:
+
+- `as_path_prepend` (Attributes) AS number to prepend to the AS Path attributes. (see [below for nested schema](#nestedatt--items--spec--default_action--bgp--as_path_prepend))
+- `as_path_remove` (Boolean) Clear the AS path to make it empty.
+- `as_path_replace` (List of Number) Replace the existing AS path with a new AS_SEQUENCE containing the listed AS numbers.
+- `communities` (Attributes) Modify BGP communities associated with the route using hybrid Community Sets. (see [below for nested schema](#nestedatt--items--spec--default_action--bgp--communities))
+- `med` (Attributes) Set a new MED value. (see [below for nested schema](#nestedatt--items--spec--default_action--bgp--med))
+- `next_hop` (Attributes) Override the BGP next-hop attribute. (see [below for nested schema](#nestedatt--items--spec--default_action--bgp--next_hop))
+- `set_local_preference` (Number) Set a new LOCAL_PREF value for matching BGP routes.
+- `set_origin` (String) Set a new ORIGIN attribute for matching BGP routes.
+
+<a id="nestedatt--items--spec--default_action--bgp--as_path_prepend"></a>
+### Nested Schema for `items.spec.default_action.bgp.as_path_prepend`
+
+Read-Only:
+
+- `asn` (String) AS number to prepend to the AS Path attributes. Can be an integer value or the keyword `Auto`.
+- `count` (Number) Number of times to prepend the AS number.
+
+
+<a id="nestedatt--items--spec--default_action--bgp--communities"></a>
+### Nested Schema for `items.spec.default_action.bgp.communities`
+
+Read-Only:
+
+- `add_sets` (List of String) List of community sets to add to the route.
+- `remove_sets` (List of String) List of community sets to remove from the route.
+- `replace_sets` (List of String) List of community sets to replace the existing communities with. Cannot be combined with Add or Remove.
+
+
+<a id="nestedatt--items--spec--default_action--bgp--med"></a>
+### Nested Schema for `items.spec.default_action.bgp.med`
+
+Read-Only:
+
+- `numerical_value` (Number) Fixed numerical value to set or add/subtract.
+- `operation` (String) The operation to perform on the MED value.
+- `value_type` (String) Use a fixed value or an IGP metric to adjust the MED.
+
+
+<a id="nestedatt--items--spec--default_action--bgp--next_hop"></a>
+### Nested Schema for `items.spec.default_action.bgp.next_hop`
+
+Read-Only:
+
+- `address` (String) IP Address of the next hop. Only valid when NextHopType is set to FixedIP.
+- `type` (String) Set next-hop to either a fixed IP address or to a local IP address of the device using a `Self` or `PeerIP` keyword.
+
+
+
+<a id="nestedatt--items--spec--default_action--tags"></a>
+### Nested Schema for `items.spec.default_action.tags`
+
+Read-Only:
+
+- `apply_tag_set` (String) Add tags to the route from the referenced Tag Set.
+
+
+
+<a id="nestedatt--items--spec--statements"></a>
+### Nested Schema for `items.spec.statements`
+
+Read-Only:
+
+- `action` (Attributes) Actions for routes that match the policy statement. (see [below for nested schema](#nestedatt--items--spec--statements--action))
+- `match` (Attributes) Match conditions of the policy statement. (see [below for nested schema](#nestedatt--items--spec--statements--match))
+- `name` (String) Name of the policy statement.
+
+<a id="nestedatt--items--spec--statements--action"></a>
+### Nested Schema for `items.spec.statements.action`
+
+Read-Only:
+
+- `bgp` (Attributes) Actions related to the BGP protocol. (see [below for nested schema](#nestedatt--items--spec--statements--action--bgp))
+- `policy_result` (String) Final disposition for the route.
+- `set_route_preference` (Number) Set the RTM route preference (administrative distance) value.
+- `tags` (Attributes) Manipulate internal route tags associated with the route. (see [below for nested schema](#nestedatt--items--spec--statements--action--tags))
+
+<a id="nestedatt--items--spec--statements--action--bgp"></a>
+### Nested Schema for `items.spec.statements.action.bgp`
+
+Read-Only:
+
+- `as_path_prepend` (Attributes) AS number to prepend to the AS Path attributes. (see [below for nested schema](#nestedatt--items--spec--statements--action--bgp--as_path_prepend))
+- `as_path_remove` (Boolean) Clear the AS path to make it empty.
+- `as_path_replace` (List of Number) Replace the existing AS path with a new AS_SEQUENCE containing the listed AS numbers.
+- `communities` (Attributes) Modify BGP communities associated with the route using hybrid Community Sets. (see [below for nested schema](#nestedatt--items--spec--statements--action--bgp--communities))
+- `med` (Attributes) Set a new MED value. (see [below for nested schema](#nestedatt--items--spec--statements--action--bgp--med))
+- `next_hop` (Attributes) Override the BGP next-hop attribute. (see [below for nested schema](#nestedatt--items--spec--statements--action--bgp--next_hop))
+- `set_local_preference` (Number) Set a new LOCAL_PREF value for matching BGP routes.
+- `set_origin` (String) Set a new ORIGIN attribute for matching BGP routes.
+
+<a id="nestedatt--items--spec--statements--action--bgp--as_path_prepend"></a>
+### Nested Schema for `items.spec.statements.action.bgp.as_path_prepend`
+
+Read-Only:
+
+- `asn` (String) AS number to prepend to the AS Path attributes. Can be an integer value or the keyword `Auto`.
+- `count` (Number) Number of times to prepend the AS number.
+
+
+<a id="nestedatt--items--spec--statements--action--bgp--communities"></a>
+### Nested Schema for `items.spec.statements.action.bgp.communities`
+
+Read-Only:
+
+- `add_sets` (List of String) List of community sets to add to the route.
+- `remove_sets` (List of String) List of community sets to remove from the route.
+- `replace_sets` (List of String) List of community sets to replace the existing communities with. Cannot be combined with Add or Remove.
+
+
+<a id="nestedatt--items--spec--statements--action--bgp--med"></a>
+### Nested Schema for `items.spec.statements.action.bgp.med`
+
+Read-Only:
+
+- `numerical_value` (Number) Fixed numerical value to set or add/subtract.
+- `operation` (String) The operation to perform on the MED value.
+- `value_type` (String) Use a fixed value or an IGP metric to adjust the MED.
+
+
+<a id="nestedatt--items--spec--statements--action--bgp--next_hop"></a>
+### Nested Schema for `items.spec.statements.action.bgp.next_hop`
+
+Read-Only:
+
+- `address` (String) IP Address of the next hop. Only valid when NextHopType is set to FixedIP.
+- `type` (String) Set next-hop to either a fixed IP address or to a local IP address of the device using a `Self` or `PeerIP` keyword.
+
+
+
+<a id="nestedatt--items--spec--statements--action--tags"></a>
+### Nested Schema for `items.spec.statements.action.tags`
+
+Read-Only:
+
+- `apply_tag_set` (String) Add tags to the route from the referenced Tag Set.
+
+
+
+<a id="nestedatt--items--spec--statements--match"></a>
+### Nested Schema for `items.spec.statements.match`
+
+Read-Only:
+
+- `bgp` (Attributes) Configuration for BGP-specific policy match criteria. (see [below for nested schema](#nestedatt--items--spec--statements--match--bgp))
+- `families` (List of String) Address families that the route belongs to.
+- `prefix_set` (String) Reference to a PrefixSet resource.
+- `protocol` (String) The route protocol type to match.
+- `tags` (Attributes) Match based on the internal route tags associated with the route. (see [below for nested schema](#nestedatt--items--spec--statements--match--tags))
+
+<a id="nestedatt--items--spec--statements--match--bgp"></a>
+### Nested Schema for `items.spec.statements.match.bgp`
+
+Read-Only:
+
+- `as_path_match` (Attributes) AS Path match criteria. (see [below for nested schema](#nestedatt--items--spec--statements--match--bgp--as_path_match))
+- `community_set` (String) Match conditions for BGP communities.
+- `evpn_route_types` (List of Number) Match conditions for EVPN route types.
+- `next_hop` (Attributes) Match conditions for the BGP next-hop attribute. (see [below for nested schema](#nestedatt--items--spec--statements--match--bgp--next_hop))
+
+<a id="nestedatt--items--spec--statements--match--bgp--as_path_match"></a>
+### Nested Schema for `items.spec.statements.match.bgp.as_path_match`
+
+Read-Only:
+
+- `as_path_expression` (String) A singular regular expression string to match against AS_PATH objects. Mutually exclusive with the ASPathSet reference.
+- `as_path_set` (String) Reference to an ASPathSet resource. Mutually exclusive with the ASPathExpression.
+- `match_set_options` (String) The matching criteria that applies to the members in the referenced set.
+
+
+<a id="nestedatt--items--spec--statements--match--bgp--next_hop"></a>
+### Nested Schema for `items.spec.statements.match.bgp.next_hop`
+
+Read-Only:
+
+- `ip_address` (String) Match the next-hop attribute to a specific IP address.
+- `prefix_set` (String) Match the next-hop attribute to a specific group of IP addresses defined in a PrefixSet. Mutually exclusive with IPAddress.
+
+
+
+<a id="nestedatt--items--spec--statements--match--tags"></a>
+### Nested Schema for `items.spec.statements.match.tags`
+
+Read-Only:
+
+- `tag_set` (String) Reference to a TagSet resource.
+
+
+
 
 
 <a id="nestedatt--items--status"></a>

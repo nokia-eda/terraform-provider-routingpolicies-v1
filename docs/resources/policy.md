@@ -60,6 +60,7 @@ Optional:
 
 - `bgp` (Attributes) Actions related to the BGP protocol. (see [below for nested schema](#nestedatt--spec--default_action--bgp))
 - `policy_result` (String) Final disposition for the route.
+- `set_route_preference` (Number) Set the RTM route preference (administrative distance) value.
 - `tags` (Attributes) Manipulate internal route tags associated with the route. (see [below for nested schema](#nestedatt--spec--default_action--tags))
 
 <a id="nestedatt--spec--default_action--bgp"></a>
@@ -146,6 +147,7 @@ Optional:
 
 - `bgp` (Attributes) Actions related to the BGP protocol. (see [below for nested schema](#nestedatt--spec--statements--action--bgp))
 - `policy_result` (String) Final disposition for the route.
+- `set_route_preference` (Number) Set the RTM route preference (administrative distance) value.
 - `tags` (Attributes) Manipulate internal route tags associated with the route. (see [below for nested schema](#nestedatt--spec--statements--action--tags))
 
 <a id="nestedatt--spec--statements--action--bgp"></a>
@@ -232,6 +234,7 @@ Optional:
 - `as_path_match` (Attributes) AS Path match criteria. (see [below for nested schema](#nestedatt--spec--statements--match--bgp--as_path_match))
 - `community_set` (String) Match conditions for BGP communities.
 - `evpn_route_types` (List of Number) Match conditions for EVPN route types.
+- `next_hop` (Attributes) Match conditions for the BGP next-hop attribute. (see [below for nested schema](#nestedatt--spec--statements--match--bgp--next_hop))
 
 <a id="nestedatt--spec--statements--match--bgp--as_path_match"></a>
 ### Nested Schema for `spec.statements.match.bgp.as_path_match`
@@ -241,6 +244,15 @@ Optional:
 - `as_path_expression` (String) A singular regular expression string to match against AS_PATH objects. Mutually exclusive with the ASPathSet reference.
 - `as_path_set` (String) Reference to an ASPathSet resource. Mutually exclusive with the ASPathExpression.
 - `match_set_options` (String) The matching criteria that applies to the members in the referenced set.
+
+
+<a id="nestedatt--spec--statements--match--bgp--next_hop"></a>
+### Nested Schema for `spec.statements.match.bgp.next_hop`
+
+Optional:
+
+- `ip_address` (String) Match the next-hop attribute to a specific IP address.
+- `prefix_set` (String) Match the next-hop attribute to a specific group of IP addresses defined in a PrefixSet. Mutually exclusive with IPAddress.
 
 
 

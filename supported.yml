@@ -29,12 +29,6 @@ datasources:
   - model_name: prefix_set
     oas_endpoint: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/prefixsets/{name}
     oas_schema: com.nokia.eda.routingpolicies.v1.PrefixSet
-  - model_name: tag_set_deployment_list
-    oas_endpoint: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments
-    oas_schema: com.nokia.eda.routingpolicies.v1.TagSetDeploymentList
-  - model_name: tag_set_deployment
-    oas_endpoint: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments/{name}
-    oas_schema: com.nokia.eda.routingpolicies.v1.TagSetDeployment
   - model_name: tag_set_list
     oas_endpoint: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsets
     oas_schema: com.nokia.eda.routingpolicies.v1.TagSetList
@@ -55,9 +49,6 @@ resources:
   - model_name: prefix_set
     oas_endpoint: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/prefixsets
     oas_schema: com.nokia.eda.routingpolicies.v1.PrefixSet
-  - model_name: tag_set_deployment
-    oas_endpoint: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments
-    oas_schema: com.nokia.eda.routingpolicies.v1.TagSetDeployment
   - model_name: tag_set
     oas_endpoint: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsets
     oas_schema: com.nokia.eda.routingpolicies.v1.TagSet
@@ -78,8 +69,6 @@ qualified:
       get: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/policys/_deleted
     - oas_schema: com.nokia.eda.routingpolicies.v1.PrefixSet_DeletedResources
       get: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/prefixsets/_deleted
-    - oas_schema: com.nokia.eda.routingpolicies.v1.TagSetDeployment_DeletedResources
-      get: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments/_deleted
     - oas_schema: com.nokia.eda.routingpolicies.v1.TagSet_DeletedResources
       get: /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsets/_deleted
   resources:

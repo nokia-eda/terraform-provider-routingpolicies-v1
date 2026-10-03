@@ -84,9 +84,7 @@
             "type": "string"
           },
           "values": {
-            "additionalProperties": {
-              "type": "object"
-            },
+            "additionalProperties": true,
             "description": "Associated data/information.\nThe error \"message\" may contain {{name}} escapes that should be substituted with information from this dictionary.\n\nNote that this map MUST NOT contain JSON objects (`{...}`) or arrays (`[...]`), only simple JSON types are permitted.",
             "type": "object"
           }
@@ -149,6 +147,10 @@
           "x-permissive": {
             "description": "For an \"add\" operation, an already-present field referenced by the \"path\" will\nresult in an error unless this field is true.  Similarly for a non-existent\ntarget field of a \"remove\" operation.",
             "type": "boolean"
+          },
+          "x-ui-annotation": {
+            "description": "Metadata maintained in support of the EDA UI.  External use not recommended.",
+            "type": "string"
           }
         },
         "required": [
@@ -581,10 +583,16 @@
           "endpoint_a_name": {
             "type": "string"
           },
+          "endpoint_a_namespace": {
+            "type": "string"
+          },
           "endpoint_b": {
             "$ref": "#/components/schemas/TopoOverlayEndpoint"
           },
           "endpoint_b_name": {
+            "type": "string"
+          },
+          "endpoint_b_namespace": {
             "type": "string"
           },
           "group_key": {
@@ -1009,6 +1017,10 @@
             "format": "date-time",
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "group": "core.eda.nokia.com",
+                "title": "commitTime"
+              },
               "ui-order-priority": 50,
               "ui-title": "Commit Time",
               "ui-title-key": "commitTime"
@@ -1017,6 +1029,10 @@
           "hash": {
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "group": "core.eda.nokia.com",
+                "title": "commitHash"
+              },
               "ui-order-priority": 40,
               "ui-title": "Commit Hash",
               "ui-title-key": "commitHash"
@@ -1025,6 +1041,14 @@
           "name": {
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "group": "core.eda.nokia.com",
+                "title": "name"
+              },
+              "key": {
+                "index": 2,
+                "is-name": true
+              },
               "ui-order-priority": 10,
               "ui-title": "Name",
               "ui-title-key": "name"
@@ -1033,6 +1057,14 @@
           "namespace": {
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "group": "core.eda.nokia.com",
+                "title": "namespace"
+              },
+              "key": {
+                "index": 1,
+                "is-namespace": true
+              },
               "ui-order-priority": 20,
               "ui-title": "Namespace",
               "ui-title-key": "namespace"
@@ -1042,6 +1074,10 @@
             "format": "uint64",
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "group": "core.eda.nokia.com",
+                "title": "transactionId"
+              },
               "ui-order-priority": 30,
               "ui-title": "Transaction ID",
               "ui-title-key": "transactionId"
@@ -1063,6 +1099,9 @@
             "readOnly": true,
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "alarm_severities.critical"
+              },
               "ui-title": "Critical",
               "ui-title-key": "alarm_severities.critical"
             }
@@ -1072,6 +1111,9 @@
             "readOnly": true,
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "alarm_severities.major"
+              },
               "ui-title": "Major",
               "ui-title-key": "alarm_severities.major"
             }
@@ -1081,6 +1123,9 @@
             "readOnly": true,
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "alarm_severities.minor"
+              },
               "ui-title": "minor",
               "ui-title-key": "alarm_severities.minor"
             }
@@ -1090,6 +1135,9 @@
             "readOnly": true,
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "alarm_severities.warning"
+              },
               "ui-title": "Warning",
               "ui-title-key": "alarm_severities.warning"
             }
@@ -1098,6 +1146,10 @@
         "readOnly": true,
         "type": "object",
         "x-eda-nokia-com": {
+          "i18n-keys": {
+            "group": "core.eda.nokia.com",
+            "title": "alarms"
+          },
           "ui-order-priority": 40,
           "ui-title": "Alarms",
           "ui-title-key": "alarms"
@@ -1110,6 +1162,9 @@
             "readOnly": true,
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "count_column"
+              },
               "ui-title": "Count",
               "ui-title-key": "count_column"
             }
@@ -1118,6 +1173,10 @@
         "readOnly": true,
         "type": "object",
         "x-eda-nokia-com": {
+          "i18n-keys": {
+            "group": "core.eda.nokia.com",
+            "title": "deviations"
+          },
           "ui-order-priority": 50,
           "ui-title": "Deviations",
           "ui-title-key": "deviations"
@@ -1131,6 +1190,9 @@
             },
             "type": "object",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "annotations"
+              },
               "ui-order-priority": 40,
               "ui-title": "Annotations",
               "ui-title-key": "annotations"
@@ -1142,6 +1204,9 @@
             },
             "type": "object",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "labels"
+              },
               "ui-auto-completes": [
                 {
                   "condition": "true",
@@ -1161,7 +1226,15 @@
             "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$",
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "name"
+              },
               "immutable": true,
+              "key": {
+                "index": 2,
+                "is-mirror": true,
+                "is-name": true
+              },
               "ui-order-priority": 10,
               "ui-pattern-error": "A valid name is made up of one or more components where each component is separated by period characters.  Each component must start and end with a lower case alphanumeric character and the body of the component is made up of zero or more lower case alphanumeric and hyphen characters.",
               "ui-title": "Name",
@@ -1171,7 +1244,15 @@
           "namespace": {
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "namespace"
+              },
               "immutable": true,
+              "key": {
+                "index": 1,
+                "is-mirror": true,
+                "is-namespace": true
+              },
               "ui-order-priority": 20,
               "ui-title": "Namespace",
               "ui-title-key": "namespace"
@@ -1184,6 +1265,10 @@
         ],
         "type": "object",
         "x-eda-nokia-com": {
+          "i18n-keys": {
+            "group": "core.eda.nokia.com",
+            "title": "metadata"
+          },
           "ui-order-priority": 10,
           "ui-title": "Metadata",
           "ui-title-key": "metadata"
@@ -1236,7 +1321,7 @@
                 "type": "string",
                 "x-eda-nokia-com": {
                   "ui-column-span": 4,
-                  "ui-order-priority": 2500,
+                  "ui-order-priority": 4000,
                   "ui-single-line-group": "Community Set"
                 }
               },
@@ -1251,7 +1336,7 @@
                 "type": "string",
                 "x-eda-nokia-com": {
                   "ui-column-span": 2,
-                  "ui-order-priority": 1500
+                  "ui-order-priority": 3000
                 }
               },
               "members": {
@@ -1263,8 +1348,24 @@
                 "type": "array",
                 "x-eda-nokia-com": {
                   "ui-column-span": 4,
-                  "ui-order-priority": 500,
+                  "ui-order-priority": 2000,
                   "ui-single-line-group": "Community Set"
+                }
+              },
+              "type": {
+                "default": "Hybrid",
+                "description": "The type of community set.",
+                "enum": [
+                  "Standard",
+                  "Extended",
+                  "Large",
+                  "Hybrid"
+                ],
+                "title": "Community Set Type",
+                "type": "string",
+                "x-eda-nokia-com": {
+                  "ui-column-span": 2,
+                  "ui-order-priority": 1000
                 }
               }
             },
@@ -1320,6 +1421,10 @@
             "format": "date-time",
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "group": "core.eda.nokia.com",
+                "title": "commitTime"
+              },
               "ui-order-priority": 50,
               "ui-title": "Commit Time",
               "ui-title-key": "commitTime"
@@ -1328,6 +1433,10 @@
           "hash": {
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "group": "core.eda.nokia.com",
+                "title": "commitHash"
+              },
               "ui-order-priority": 40,
               "ui-title": "Commit Hash",
               "ui-title-key": "commitHash"
@@ -1336,6 +1445,14 @@
           "name": {
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "group": "core.eda.nokia.com",
+                "title": "name"
+              },
+              "key": {
+                "index": 2,
+                "is-name": true
+              },
               "ui-order-priority": 10,
               "ui-title": "Name",
               "ui-title-key": "name"
@@ -1344,6 +1461,14 @@
           "namespace": {
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "group": "core.eda.nokia.com",
+                "title": "namespace"
+              },
+              "key": {
+                "index": 1,
+                "is-namespace": true
+              },
               "ui-order-priority": 20,
               "ui-title": "Namespace",
               "ui-title-key": "namespace"
@@ -1353,6 +1478,10 @@
             "format": "uint64",
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "group": "core.eda.nokia.com",
+                "title": "transactionId"
+              },
               "ui-order-priority": 30,
               "ui-title": "Transaction ID",
               "ui-title-key": "transactionId"
@@ -1374,6 +1503,9 @@
             "readOnly": true,
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "alarm_severities.critical"
+              },
               "ui-title": "Critical",
               "ui-title-key": "alarm_severities.critical"
             }
@@ -1383,6 +1515,9 @@
             "readOnly": true,
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "alarm_severities.major"
+              },
               "ui-title": "Major",
               "ui-title-key": "alarm_severities.major"
             }
@@ -1392,6 +1527,9 @@
             "readOnly": true,
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "alarm_severities.minor"
+              },
               "ui-title": "minor",
               "ui-title-key": "alarm_severities.minor"
             }
@@ -1401,6 +1539,9 @@
             "readOnly": true,
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "alarm_severities.warning"
+              },
               "ui-title": "Warning",
               "ui-title-key": "alarm_severities.warning"
             }
@@ -1409,6 +1550,10 @@
         "readOnly": true,
         "type": "object",
         "x-eda-nokia-com": {
+          "i18n-keys": {
+            "group": "core.eda.nokia.com",
+            "title": "alarms"
+          },
           "ui-order-priority": 40,
           "ui-title": "Alarms",
           "ui-title-key": "alarms"
@@ -1421,6 +1566,9 @@
             "readOnly": true,
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "count_column"
+              },
               "ui-title": "Count",
               "ui-title-key": "count_column"
             }
@@ -1429,6 +1577,10 @@
         "readOnly": true,
         "type": "object",
         "x-eda-nokia-com": {
+          "i18n-keys": {
+            "group": "core.eda.nokia.com",
+            "title": "deviations"
+          },
           "ui-order-priority": 50,
           "ui-title": "Deviations",
           "ui-title-key": "deviations"
@@ -1442,6 +1594,9 @@
             },
             "type": "object",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "annotations"
+              },
               "ui-order-priority": 40,
               "ui-title": "Annotations",
               "ui-title-key": "annotations"
@@ -1453,6 +1608,9 @@
             },
             "type": "object",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "labels"
+              },
               "ui-auto-completes": [
                 {
                   "condition": "true",
@@ -1472,7 +1630,15 @@
             "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$",
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "name"
+              },
               "immutable": true,
+              "key": {
+                "index": 2,
+                "is-mirror": true,
+                "is-name": true
+              },
               "ui-order-priority": 10,
               "ui-pattern-error": "A valid name is made up of one or more components where each component is separated by period characters.  Each component must start and end with a lower case alphanumeric character and the body of the component is made up of zero or more lower case alphanumeric and hyphen characters.",
               "ui-title": "Name",
@@ -1482,7 +1648,15 @@
           "namespace": {
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "namespace"
+              },
               "immutable": true,
+              "key": {
+                "index": 1,
+                "is-mirror": true,
+                "is-namespace": true
+              },
               "ui-order-priority": 20,
               "ui-title": "Namespace",
               "ui-title-key": "namespace"
@@ -1495,6 +1669,10 @@
         ],
         "type": "object",
         "x-eda-nokia-com": {
+          "i18n-keys": {
+            "group": "core.eda.nokia.com",
+            "title": "metadata"
+          },
           "ui-order-priority": 10,
           "ui-title": "Metadata",
           "ui-title-key": "metadata"
@@ -1589,13 +1767,29 @@
                         "title": "AS Path Remove",
                         "type": "boolean",
                         "x-eda-nokia-com": {
-                          "ui-column-span": 2
+                          "ui-column-span": 2,
+                          "ui-render": [
+                            {
+                              "color": "kpi_info",
+                              "condition": "field===true",
+                              "icon": "ToggleOn",
+                              "text": "True"
+                            },
+                            {
+                              "color": "kpi_disabled",
+                              "condition": "field===false",
+                              "icon": "ToggleOff",
+                              "text": "False"
+                            }
+                          ]
                         }
                       },
                       "asPathReplace": {
                         "description": "Replace the existing AS path with a new AS_SEQUENCE containing the listed AS numbers.",
                         "items": {
-                          "format": "int32",
+                          "format": "int64",
+                          "maximum": 4294967295,
+                          "minimum": 1,
                           "type": "integer"
                         },
                         "title": "AS Path Replace",
@@ -1681,7 +1875,7 @@
                         "properties": {
                           "numericalValue": {
                             "description": "Fixed numerical value to set or add/subtract.",
-                            "maximum": 4294967295,
+                            "format": "int64",
                             "minimum": 0,
                             "title": "MED Value",
                             "type": "integer",
@@ -1762,8 +1956,7 @@
                       },
                       "setLocalPreference": {
                         "description": "Set a new LOCAL_PREF value for matching BGP routes.",
-                        "format": "int32",
-                        "maximum": 4294967295,
+                        "format": "int64",
                         "minimum": 0,
                         "title": "Set Local Preference",
                         "type": "integer",
@@ -1809,6 +2002,18 @@
                     "x-eda-nokia-com": {
                       "ui-column-span": 2,
                       "ui-order-priority": 1000
+                    }
+                  },
+                  "setRoutePreference": {
+                    "description": "Set the RTM route preference (administrative distance) value.",
+                    "format": "int32",
+                    "maximum": 255,
+                    "minimum": 1,
+                    "title": "Route Preference",
+                    "type": "integer",
+                    "x-eda-nokia-com": {
+                      "ui-column-span": 2,
+                      "ui-order-priority": 4000
                     }
                   },
                   "tags": {
@@ -1898,13 +2103,29 @@
                               "title": "AS Path Remove",
                               "type": "boolean",
                               "x-eda-nokia-com": {
-                                "ui-column-span": 2
+                                "ui-column-span": 2,
+                                "ui-render": [
+                                  {
+                                    "color": "kpi_info",
+                                    "condition": "field===true",
+                                    "icon": "ToggleOn",
+                                    "text": "True"
+                                  },
+                                  {
+                                    "color": "kpi_disabled",
+                                    "condition": "field===false",
+                                    "icon": "ToggleOff",
+                                    "text": "False"
+                                  }
+                                ]
                               }
                             },
                             "asPathReplace": {
                               "description": "Replace the existing AS path with a new AS_SEQUENCE containing the listed AS numbers.",
                               "items": {
-                                "format": "int32",
+                                "format": "int64",
+                                "maximum": 4294967295,
+                                "minimum": 1,
                                 "type": "integer"
                               },
                               "title": "AS Path Replace",
@@ -1990,7 +2211,7 @@
                               "properties": {
                                 "numericalValue": {
                                   "description": "Fixed numerical value to set or add/subtract.",
-                                  "maximum": 4294967295,
+                                  "format": "int64",
                                   "minimum": 0,
                                   "title": "MED Value",
                                   "type": "integer",
@@ -2071,8 +2292,7 @@
                             },
                             "setLocalPreference": {
                               "description": "Set a new LOCAL_PREF value for matching BGP routes.",
-                              "format": "int32",
-                              "maximum": 4294967295,
+                              "format": "int64",
                               "minimum": 0,
                               "title": "Set Local Preference",
                               "type": "integer",
@@ -2118,6 +2338,18 @@
                           "x-eda-nokia-com": {
                             "ui-column-span": 2,
                             "ui-order-priority": 1000
+                          }
+                        },
+                        "setRoutePreference": {
+                          "description": "Set the RTM route preference (administrative distance) value.",
+                          "format": "int32",
+                          "maximum": 255,
+                          "minimum": 1,
+                          "title": "Route Preference",
+                          "type": "integer",
+                          "x-eda-nokia-com": {
+                            "ui-column-span": 2,
+                            "ui-order-priority": 4000
                           }
                         },
                         "tags": {
@@ -2231,12 +2463,50 @@
                             "evpnRouteTypes": {
                               "description": "Match conditions for EVPN route types.",
                               "items": {
+                                "format": "int64",
                                 "type": "integer"
                               },
                               "title": "EVPN Route Type",
                               "type": "array",
                               "x-eda-nokia-com": {
                                 "ui-column-span": 2,
+                                "ui-order-priority": 3000
+                              }
+                            },
+                            "nextHop": {
+                              "description": "Match conditions for the BGP next-hop attribute.",
+                              "properties": {
+                                "ipAddress": {
+                                  "description": "Match the next-hop attribute to a specific IP address.",
+                                  "format": "ip",
+                                  "title": "Next Hop IP",
+                                  "type": "string",
+                                  "x-eda-nokia-com": {
+                                    "ui-column-span": 2,
+                                    "ui-order-priority": 200
+                                  }
+                                },
+                                "prefixSet": {
+                                  "description": "Match the next-hop attribute to a specific group of IP addresses defined in a PrefixSet. Mutually exclusive with IPAddress.",
+                                  "title": "Next Hop Prefix Set",
+                                  "type": "string",
+                                  "x-eda-nokia-com": {
+                                    "ui-auto-completes": [
+                                      {
+                                        "condition": "true",
+                                        "group": "routingpolicies.eda.nokia.com",
+                                        "resource": "prefixsets",
+                                        "type": "gvr"
+                                      }
+                                    ],
+                                    "ui-column-span": 2,
+                                    "ui-order-priority": 400
+                                  }
+                                }
+                              },
+                              "title": "Next Hop",
+                              "type": "object",
+                              "x-eda-nokia-com": {
                                 "ui-order-priority": 3000
                               }
                             }
@@ -2420,6 +2690,10 @@
             "format": "date-time",
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "group": "core.eda.nokia.com",
+                "title": "commitTime"
+              },
               "ui-order-priority": 50,
               "ui-title": "Commit Time",
               "ui-title-key": "commitTime"
@@ -2428,6 +2702,10 @@
           "hash": {
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "group": "core.eda.nokia.com",
+                "title": "commitHash"
+              },
               "ui-order-priority": 40,
               "ui-title": "Commit Hash",
               "ui-title-key": "commitHash"
@@ -2436,6 +2714,14 @@
           "name": {
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "group": "core.eda.nokia.com",
+                "title": "name"
+              },
+              "key": {
+                "index": 2,
+                "is-name": true
+              },
               "ui-order-priority": 10,
               "ui-title": "Name",
               "ui-title-key": "name"
@@ -2444,6 +2730,14 @@
           "namespace": {
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "group": "core.eda.nokia.com",
+                "title": "namespace"
+              },
+              "key": {
+                "index": 1,
+                "is-namespace": true
+              },
               "ui-order-priority": 20,
               "ui-title": "Namespace",
               "ui-title-key": "namespace"
@@ -2453,6 +2747,10 @@
             "format": "uint64",
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "group": "core.eda.nokia.com",
+                "title": "transactionId"
+              },
               "ui-order-priority": 30,
               "ui-title": "Transaction ID",
               "ui-title-key": "transactionId"
@@ -2474,6 +2772,9 @@
             "readOnly": true,
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "alarm_severities.critical"
+              },
               "ui-title": "Critical",
               "ui-title-key": "alarm_severities.critical"
             }
@@ -2483,6 +2784,9 @@
             "readOnly": true,
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "alarm_severities.major"
+              },
               "ui-title": "Major",
               "ui-title-key": "alarm_severities.major"
             }
@@ -2492,6 +2796,9 @@
             "readOnly": true,
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "alarm_severities.minor"
+              },
               "ui-title": "minor",
               "ui-title-key": "alarm_severities.minor"
             }
@@ -2501,6 +2808,9 @@
             "readOnly": true,
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "alarm_severities.warning"
+              },
               "ui-title": "Warning",
               "ui-title-key": "alarm_severities.warning"
             }
@@ -2509,6 +2819,10 @@
         "readOnly": true,
         "type": "object",
         "x-eda-nokia-com": {
+          "i18n-keys": {
+            "group": "core.eda.nokia.com",
+            "title": "alarms"
+          },
           "ui-order-priority": 40,
           "ui-title": "Alarms",
           "ui-title-key": "alarms"
@@ -2521,6 +2835,9 @@
             "readOnly": true,
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "count_column"
+              },
               "ui-title": "Count",
               "ui-title-key": "count_column"
             }
@@ -2529,6 +2846,10 @@
         "readOnly": true,
         "type": "object",
         "x-eda-nokia-com": {
+          "i18n-keys": {
+            "group": "core.eda.nokia.com",
+            "title": "deviations"
+          },
           "ui-order-priority": 50,
           "ui-title": "Deviations",
           "ui-title-key": "deviations"
@@ -2542,6 +2863,9 @@
             },
             "type": "object",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "annotations"
+              },
               "ui-order-priority": 40,
               "ui-title": "Annotations",
               "ui-title-key": "annotations"
@@ -2553,6 +2877,9 @@
             },
             "type": "object",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "labels"
+              },
               "ui-auto-completes": [
                 {
                   "condition": "true",
@@ -2572,7 +2899,15 @@
             "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$",
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "name"
+              },
               "immutable": true,
+              "key": {
+                "index": 2,
+                "is-mirror": true,
+                "is-name": true
+              },
               "ui-order-priority": 10,
               "ui-pattern-error": "A valid name is made up of one or more components where each component is separated by period characters.  Each component must start and end with a lower case alphanumeric character and the body of the component is made up of zero or more lower case alphanumeric and hyphen characters.",
               "ui-title": "Name",
@@ -2582,7 +2917,15 @@
           "namespace": {
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "namespace"
+              },
               "immutable": true,
+              "key": {
+                "index": 1,
+                "is-mirror": true,
+                "is-namespace": true
+              },
               "ui-order-priority": 20,
               "ui-title": "Namespace",
               "ui-title-key": "namespace"
@@ -2595,6 +2938,10 @@
         ],
         "type": "object",
         "x-eda-nokia-com": {
+          "i18n-keys": {
+            "group": "core.eda.nokia.com",
+            "title": "metadata"
+          },
           "ui-order-priority": 10,
           "ui-title": "Metadata",
           "ui-title-key": "metadata"
@@ -2647,6 +2994,7 @@
                   "properties": {
                     "endRange": {
                       "description": "The end range when using a range to match prefixes.",
+                      "format": "int32",
                       "maximum": 128,
                       "minimum": 0,
                       "title": "End Range",
@@ -2662,7 +3010,21 @@
                       "title": "Exact",
                       "type": "boolean",
                       "x-eda-nokia-com": {
-                        "ui-column-span": 2
+                        "ui-column-span": 2,
+                        "ui-render": [
+                          {
+                            "color": "kpi_info",
+                            "condition": "field===true",
+                            "icon": "ToggleOn",
+                            "text": "True"
+                          },
+                          {
+                            "color": "kpi_disabled",
+                            "condition": "field===false",
+                            "icon": "ToggleOff",
+                            "text": "False"
+                          }
+                        ]
                       }
                     },
                     "prefix": {
@@ -2678,6 +3040,7 @@
                     },
                     "startRange": {
                       "description": "If specifying a range, this is the start of the range.",
+                      "format": "int32",
                       "maximum": 128,
                       "minimum": 0,
                       "title": "Start Range",
@@ -2753,6 +3116,10 @@
             "format": "date-time",
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "group": "core.eda.nokia.com",
+                "title": "commitTime"
+              },
               "ui-order-priority": 50,
               "ui-title": "Commit Time",
               "ui-title-key": "commitTime"
@@ -2761,6 +3128,10 @@
           "hash": {
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "group": "core.eda.nokia.com",
+                "title": "commitHash"
+              },
               "ui-order-priority": 40,
               "ui-title": "Commit Hash",
               "ui-title-key": "commitHash"
@@ -2769,6 +3140,14 @@
           "name": {
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "group": "core.eda.nokia.com",
+                "title": "name"
+              },
+              "key": {
+                "index": 2,
+                "is-name": true
+              },
               "ui-order-priority": 10,
               "ui-title": "Name",
               "ui-title-key": "name"
@@ -2777,6 +3156,14 @@
           "namespace": {
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "group": "core.eda.nokia.com",
+                "title": "namespace"
+              },
+              "key": {
+                "index": 1,
+                "is-namespace": true
+              },
               "ui-order-priority": 20,
               "ui-title": "Namespace",
               "ui-title-key": "namespace"
@@ -2786,6 +3173,10 @@
             "format": "uint64",
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "group": "core.eda.nokia.com",
+                "title": "transactionId"
+              },
               "ui-order-priority": 30,
               "ui-title": "Transaction ID",
               "ui-title-key": "transactionId"
@@ -2807,6 +3198,9 @@
             "readOnly": true,
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "alarm_severities.critical"
+              },
               "ui-title": "Critical",
               "ui-title-key": "alarm_severities.critical"
             }
@@ -2816,6 +3210,9 @@
             "readOnly": true,
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "alarm_severities.major"
+              },
               "ui-title": "Major",
               "ui-title-key": "alarm_severities.major"
             }
@@ -2825,6 +3222,9 @@
             "readOnly": true,
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "alarm_severities.minor"
+              },
               "ui-title": "minor",
               "ui-title-key": "alarm_severities.minor"
             }
@@ -2834,6 +3234,9 @@
             "readOnly": true,
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "alarm_severities.warning"
+              },
               "ui-title": "Warning",
               "ui-title-key": "alarm_severities.warning"
             }
@@ -2842,6 +3245,10 @@
         "readOnly": true,
         "type": "object",
         "x-eda-nokia-com": {
+          "i18n-keys": {
+            "group": "core.eda.nokia.com",
+            "title": "alarms"
+          },
           "ui-order-priority": 40,
           "ui-title": "Alarms",
           "ui-title-key": "alarms"
@@ -2854,6 +3261,9 @@
             "readOnly": true,
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "count_column"
+              },
               "ui-title": "Count",
               "ui-title-key": "count_column"
             }
@@ -2862,6 +3272,10 @@
         "readOnly": true,
         "type": "object",
         "x-eda-nokia-com": {
+          "i18n-keys": {
+            "group": "core.eda.nokia.com",
+            "title": "deviations"
+          },
           "ui-order-priority": 50,
           "ui-title": "Deviations",
           "ui-title-key": "deviations"
@@ -2875,6 +3289,9 @@
             },
             "type": "object",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "annotations"
+              },
               "ui-order-priority": 40,
               "ui-title": "Annotations",
               "ui-title-key": "annotations"
@@ -2886,6 +3303,9 @@
             },
             "type": "object",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "labels"
+              },
               "ui-auto-completes": [
                 {
                   "condition": "true",
@@ -2905,7 +3325,15 @@
             "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$",
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "name"
+              },
               "immutable": true,
+              "key": {
+                "index": 2,
+                "is-mirror": true,
+                "is-name": true
+              },
               "ui-order-priority": 10,
               "ui-pattern-error": "A valid name is made up of one or more components where each component is separated by period characters.  Each component must start and end with a lower case alphanumeric character and the body of the component is made up of zero or more lower case alphanumeric and hyphen characters.",
               "ui-title": "Name",
@@ -2915,7 +3343,15 @@
           "namespace": {
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "namespace"
+              },
               "immutable": true,
+              "key": {
+                "index": 1,
+                "is-mirror": true,
+                "is-namespace": true
+              },
               "ui-order-priority": 20,
               "ui-title": "Namespace",
               "ui-title-key": "namespace"
@@ -2928,6 +3364,10 @@
         ],
         "type": "object",
         "x-eda-nokia-com": {
+          "i18n-keys": {
+            "group": "core.eda.nokia.com",
+            "title": "metadata"
+          },
           "ui-order-priority": 10,
           "ui-title": "Metadata",
           "ui-title-key": "metadata"
@@ -2972,6 +3412,7 @@
                   "properties": {
                     "tag": {
                       "description": "The route tag value.",
+                      "format": "int64",
                       "maximum": 4294967295,
                       "minimum": 1,
                       "title": "Tag Value",
@@ -3021,283 +3462,6 @@
         ],
         "type": "object"
       },
-      "com.nokia.eda.routingpolicies.v1.TagSetDeployment": {
-        "description": "TagSetDeployment is the Schema for the tagsetdeployments API",
-        "properties": {
-          "alarms": {
-            "$ref": "#/components/schemas/com.nokia.eda.routingpolicies.v1.TagSetDeployment_alarms"
-          },
-          "apiVersion": {
-            "default": "routingpolicies.eda.nokia.com/v1",
-            "pattern": "^routingpolicies\\.eda\\.nokia\\.com/v1$",
-            "type": "string",
-            "x-eda-nokia-com": {
-              "ui-pattern-error": "The apiVersion must be set to routingpolicies.eda.nokia.com/v1",
-              "ui-visible-if": "false"
-            }
-          },
-          "deviations": {
-            "$ref": "#/components/schemas/com.nokia.eda.routingpolicies.v1.TagSetDeployment_deviations"
-          },
-          "kind": {
-            "default": "TagSetDeployment",
-            "pattern": "^TagSetDeployment$",
-            "type": "string",
-            "x-eda-nokia-com": {
-              "ui-pattern-error": "The kind must be set to TagSetDeployment",
-              "ui-visible-if": "false"
-            }
-          },
-          "metadata": {
-            "$ref": "#/components/schemas/com.nokia.eda.routingpolicies.v1.TagSetDeployment_metadata"
-          },
-          "spec": {
-            "description": "TagSetDeploymentSpec defines the desired state of TagSetDeployment",
-            "properties": {
-              "node": {
-                "description": "Specifies a Node to deploy this Set on",
-                "type": "string"
-              },
-              "tagSet": {
-                "description": "Specifies a TagSet to deploy to the specified Node",
-                "type": "string"
-              }
-            },
-            "required": [
-              "node"
-            ],
-            "title": "Specification",
-            "type": "object",
-            "x-eda-nokia-com": {
-              "ui-order-priority": 30
-            }
-          },
-          "status": {
-            "description": "TagSetDeploymentStatus defines the observed state of TagSetDeployment",
-            "readOnly": true,
-            "title": "Status",
-            "type": "object",
-            "x-eda-nokia-com": {
-              "ui-order-priority": 20
-            }
-          }
-        },
-        "required": [
-          "apiVersion",
-          "kind",
-          "metadata",
-          "spec"
-        ],
-        "type": "object"
-      },
-      "com.nokia.eda.routingpolicies.v1.TagSetDeploymentList": {
-        "description": "TagSetDeploymentList is a list of tagsetdeployments",
-        "properties": {
-          "apiVersion": {
-            "type": "string"
-          },
-          "items": {
-            "items": {
-              "$ref": "#/components/schemas/com.nokia.eda.routingpolicies.v1.TagSetDeployment"
-            },
-            "type": "array"
-          },
-          "kind": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "apiVersion",
-          "kind"
-        ],
-        "type": "object"
-      },
-      "com.nokia.eda.routingpolicies.v1.TagSetDeployment_DeletedResourceEntry": {
-        "properties": {
-          "commitTime": {
-            "format": "date-time",
-            "type": "string",
-            "x-eda-nokia-com": {
-              "ui-order-priority": 50,
-              "ui-title": "Commit Time",
-              "ui-title-key": "commitTime"
-            }
-          },
-          "hash": {
-            "type": "string",
-            "x-eda-nokia-com": {
-              "ui-order-priority": 40,
-              "ui-title": "Commit Hash",
-              "ui-title-key": "commitHash"
-            }
-          },
-          "name": {
-            "type": "string",
-            "x-eda-nokia-com": {
-              "ui-order-priority": 10,
-              "ui-title": "Name",
-              "ui-title-key": "name"
-            }
-          },
-          "namespace": {
-            "type": "string",
-            "x-eda-nokia-com": {
-              "ui-order-priority": 20,
-              "ui-title": "Namespace",
-              "ui-title-key": "namespace"
-            }
-          },
-          "transactionId": {
-            "format": "uint64",
-            "type": "integer",
-            "x-eda-nokia-com": {
-              "ui-order-priority": 30,
-              "ui-title": "Transaction ID",
-              "ui-title-key": "transactionId"
-            }
-          }
-        },
-        "type": "object"
-      },
-      "com.nokia.eda.routingpolicies.v1.TagSetDeployment_DeletedResources": {
-        "items": {
-          "$ref": "#/components/schemas/com.nokia.eda.routingpolicies.v1.TagSetDeployment_DeletedResourceEntry"
-        },
-        "type": "array"
-      },
-      "com.nokia.eda.routingpolicies.v1.TagSetDeployment_alarms": {
-        "properties": {
-          "critical": {
-            "format": "int64",
-            "readOnly": true,
-            "type": "integer",
-            "x-eda-nokia-com": {
-              "ui-title": "Critical",
-              "ui-title-key": "alarm_severities.critical"
-            }
-          },
-          "major": {
-            "format": "int64",
-            "readOnly": true,
-            "type": "integer",
-            "x-eda-nokia-com": {
-              "ui-title": "Major",
-              "ui-title-key": "alarm_severities.major"
-            }
-          },
-          "minor": {
-            "format": "int64",
-            "readOnly": true,
-            "type": "integer",
-            "x-eda-nokia-com": {
-              "ui-title": "minor",
-              "ui-title-key": "alarm_severities.minor"
-            }
-          },
-          "warning": {
-            "format": "int64",
-            "readOnly": true,
-            "type": "integer",
-            "x-eda-nokia-com": {
-              "ui-title": "Warning",
-              "ui-title-key": "alarm_severities.warning"
-            }
-          }
-        },
-        "readOnly": true,
-        "type": "object",
-        "x-eda-nokia-com": {
-          "ui-order-priority": 40,
-          "ui-title": "Alarms",
-          "ui-title-key": "alarms"
-        }
-      },
-      "com.nokia.eda.routingpolicies.v1.TagSetDeployment_deviations": {
-        "properties": {
-          "count": {
-            "format": "int64",
-            "readOnly": true,
-            "type": "integer",
-            "x-eda-nokia-com": {
-              "ui-title": "Count",
-              "ui-title-key": "count_column"
-            }
-          }
-        },
-        "readOnly": true,
-        "type": "object",
-        "x-eda-nokia-com": {
-          "ui-order-priority": 50,
-          "ui-title": "Deviations",
-          "ui-title-key": "deviations"
-        }
-      },
-      "com.nokia.eda.routingpolicies.v1.TagSetDeployment_metadata": {
-        "properties": {
-          "annotations": {
-            "additionalProperties": {
-              "type": "string"
-            },
-            "type": "object",
-            "x-eda-nokia-com": {
-              "ui-order-priority": 40,
-              "ui-title": "Annotations",
-              "ui-title-key": "annotations"
-            }
-          },
-          "labels": {
-            "additionalProperties": {
-              "type": "string"
-            },
-            "type": "object",
-            "x-eda-nokia-com": {
-              "ui-auto-completes": [
-                {
-                  "condition": "true",
-                  "group": "routingpolicies.eda.nokia.com",
-                  "kind": "TagSetDeployment",
-                  "type": "label",
-                  "version": "v1"
-                }
-              ],
-              "ui-order-priority": 30,
-              "ui-title": "Labels",
-              "ui-title-key": "labels"
-            }
-          },
-          "name": {
-            "maxLength": 253,
-            "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$",
-            "type": "string",
-            "x-eda-nokia-com": {
-              "immutable": true,
-              "ui-order-priority": 10,
-              "ui-pattern-error": "A valid name is made up of one or more components where each component is separated by period characters.  Each component must start and end with a lower case alphanumeric character and the body of the component is made up of zero or more lower case alphanumeric and hyphen characters.",
-              "ui-title": "Name",
-              "ui-title-key": "name"
-            }
-          },
-          "namespace": {
-            "type": "string",
-            "x-eda-nokia-com": {
-              "immutable": true,
-              "ui-order-priority": 20,
-              "ui-title": "Namespace",
-              "ui-title-key": "namespace"
-            }
-          }
-        },
-        "required": [
-          "name",
-          "namespace"
-        ],
-        "type": "object",
-        "x-eda-nokia-com": {
-          "ui-order-priority": 10,
-          "ui-title": "Metadata",
-          "ui-title-key": "metadata"
-        }
-      },
       "com.nokia.eda.routingpolicies.v1.TagSetList": {
         "description": "TagSetList is a list of tagsets",
         "properties": {
@@ -3326,6 +3490,10 @@
             "format": "date-time",
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "group": "core.eda.nokia.com",
+                "title": "commitTime"
+              },
               "ui-order-priority": 50,
               "ui-title": "Commit Time",
               "ui-title-key": "commitTime"
@@ -3334,6 +3502,10 @@
           "hash": {
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "group": "core.eda.nokia.com",
+                "title": "commitHash"
+              },
               "ui-order-priority": 40,
               "ui-title": "Commit Hash",
               "ui-title-key": "commitHash"
@@ -3342,6 +3514,14 @@
           "name": {
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "group": "core.eda.nokia.com",
+                "title": "name"
+              },
+              "key": {
+                "index": 2,
+                "is-name": true
+              },
               "ui-order-priority": 10,
               "ui-title": "Name",
               "ui-title-key": "name"
@@ -3350,6 +3530,14 @@
           "namespace": {
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "group": "core.eda.nokia.com",
+                "title": "namespace"
+              },
+              "key": {
+                "index": 1,
+                "is-namespace": true
+              },
               "ui-order-priority": 20,
               "ui-title": "Namespace",
               "ui-title-key": "namespace"
@@ -3359,6 +3547,10 @@
             "format": "uint64",
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "group": "core.eda.nokia.com",
+                "title": "transactionId"
+              },
               "ui-order-priority": 30,
               "ui-title": "Transaction ID",
               "ui-title-key": "transactionId"
@@ -3380,6 +3572,9 @@
             "readOnly": true,
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "alarm_severities.critical"
+              },
               "ui-title": "Critical",
               "ui-title-key": "alarm_severities.critical"
             }
@@ -3389,6 +3584,9 @@
             "readOnly": true,
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "alarm_severities.major"
+              },
               "ui-title": "Major",
               "ui-title-key": "alarm_severities.major"
             }
@@ -3398,6 +3596,9 @@
             "readOnly": true,
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "alarm_severities.minor"
+              },
               "ui-title": "minor",
               "ui-title-key": "alarm_severities.minor"
             }
@@ -3407,6 +3608,9 @@
             "readOnly": true,
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "alarm_severities.warning"
+              },
               "ui-title": "Warning",
               "ui-title-key": "alarm_severities.warning"
             }
@@ -3415,6 +3619,10 @@
         "readOnly": true,
         "type": "object",
         "x-eda-nokia-com": {
+          "i18n-keys": {
+            "group": "core.eda.nokia.com",
+            "title": "alarms"
+          },
           "ui-order-priority": 40,
           "ui-title": "Alarms",
           "ui-title-key": "alarms"
@@ -3427,6 +3635,9 @@
             "readOnly": true,
             "type": "integer",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "count_column"
+              },
               "ui-title": "Count",
               "ui-title-key": "count_column"
             }
@@ -3435,6 +3646,10 @@
         "readOnly": true,
         "type": "object",
         "x-eda-nokia-com": {
+          "i18n-keys": {
+            "group": "core.eda.nokia.com",
+            "title": "deviations"
+          },
           "ui-order-priority": 50,
           "ui-title": "Deviations",
           "ui-title-key": "deviations"
@@ -3448,6 +3663,9 @@
             },
             "type": "object",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "annotations"
+              },
               "ui-order-priority": 40,
               "ui-title": "Annotations",
               "ui-title-key": "annotations"
@@ -3459,6 +3677,9 @@
             },
             "type": "object",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "labels"
+              },
               "ui-auto-completes": [
                 {
                   "condition": "true",
@@ -3478,7 +3699,15 @@
             "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$",
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "name"
+              },
               "immutable": true,
+              "key": {
+                "index": 2,
+                "is-mirror": true,
+                "is-name": true
+              },
               "ui-order-priority": 10,
               "ui-pattern-error": "A valid name is made up of one or more components where each component is separated by period characters.  Each component must start and end with a lower case alphanumeric character and the body of the component is made up of zero or more lower case alphanumeric and hyphen characters.",
               "ui-title": "Name",
@@ -3488,7 +3717,15 @@
           "namespace": {
             "type": "string",
             "x-eda-nokia-com": {
+              "i18n-keys": {
+                "title": "namespace"
+              },
               "immutable": true,
+              "key": {
+                "index": 1,
+                "is-mirror": true,
+                "is-namespace": true
+              },
               "ui-order-priority": 20,
               "ui-title": "Namespace",
               "ui-title-key": "namespace"
@@ -3501,6 +3738,10 @@
         ],
         "type": "object",
         "x-eda-nokia-com": {
+          "i18n-keys": {
+            "group": "core.eda.nokia.com",
+            "title": "metadata"
+          },
           "ui-order-priority": 10,
           "ui-title": "Metadata",
           "ui-title-key": "metadata"
@@ -3860,6 +4101,15 @@
             }
           },
           {
+            "description": "If true, pipelines will not be run for the resulting transaction",
+            "in": "query",
+            "name": "skipPipeline",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
             "description": "the namespace scope from which to perform the delete",
             "in": "path",
             "name": "namespace",
@@ -4023,6 +4273,15 @@
             }
           },
           {
+            "description": "If true, pipelines will not be run for the resulting transaction",
+            "in": "query",
+            "name": "skipPipeline",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
             "in": "path",
             "name": "namespace",
             "required": true,
@@ -4158,6 +4417,15 @@
             "description": "If true, prevents the transaction resulting from this request from being bundled with others.",
             "in": "query",
             "name": "disableBatching",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "If true, pipelines will not be run for the resulting transaction",
+            "in": "query",
+            "name": "skipPipeline",
             "schema": {
               "default": false,
               "type": "boolean"
@@ -4318,6 +4586,15 @@
             }
           },
           {
+            "description": "If true, pipelines will not be run for the resulting transaction",
+            "in": "query",
+            "name": "skipPipeline",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
             "in": "path",
             "name": "namespace",
             "required": true,
@@ -4396,6 +4673,15 @@
             "description": "If true, prevents the transaction resulting from this request from being bundled with others.",
             "in": "query",
             "name": "disableBatching",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "If true, pipelines will not be run for the resulting transaction",
+            "in": "query",
+            "name": "skipPipeline",
             "schema": {
               "default": false,
               "type": "boolean"
@@ -4741,6 +5027,15 @@
             }
           },
           {
+            "description": "If true, pipelines will not be run for the resulting transaction",
+            "in": "query",
+            "name": "skipPipeline",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
             "description": "the namespace scope from which to perform the delete",
             "in": "path",
             "name": "namespace",
@@ -4904,6 +5199,15 @@
             }
           },
           {
+            "description": "If true, pipelines will not be run for the resulting transaction",
+            "in": "query",
+            "name": "skipPipeline",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
             "in": "path",
             "name": "namespace",
             "required": true,
@@ -5039,6 +5343,15 @@
             "description": "If true, prevents the transaction resulting from this request from being bundled with others.",
             "in": "query",
             "name": "disableBatching",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "If true, pipelines will not be run for the resulting transaction",
+            "in": "query",
+            "name": "skipPipeline",
             "schema": {
               "default": false,
               "type": "boolean"
@@ -5199,6 +5512,15 @@
             }
           },
           {
+            "description": "If true, pipelines will not be run for the resulting transaction",
+            "in": "query",
+            "name": "skipPipeline",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
             "in": "path",
             "name": "namespace",
             "required": true,
@@ -5277,6 +5599,15 @@
             "description": "If true, prevents the transaction resulting from this request from being bundled with others.",
             "in": "query",
             "name": "disableBatching",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "If true, pipelines will not be run for the resulting transaction",
+            "in": "query",
+            "name": "skipPipeline",
             "schema": {
               "default": false,
               "type": "boolean"
@@ -5622,6 +5953,15 @@
             }
           },
           {
+            "description": "If true, pipelines will not be run for the resulting transaction",
+            "in": "query",
+            "name": "skipPipeline",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
             "description": "the namespace scope from which to perform the delete",
             "in": "path",
             "name": "namespace",
@@ -5785,6 +6125,15 @@
             }
           },
           {
+            "description": "If true, pipelines will not be run for the resulting transaction",
+            "in": "query",
+            "name": "skipPipeline",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
             "in": "path",
             "name": "namespace",
             "required": true,
@@ -5920,6 +6269,15 @@
             "description": "If true, prevents the transaction resulting from this request from being bundled with others.",
             "in": "query",
             "name": "disableBatching",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "If true, pipelines will not be run for the resulting transaction",
+            "in": "query",
+            "name": "skipPipeline",
             "schema": {
               "default": false,
               "type": "boolean"
@@ -6080,6 +6438,15 @@
             }
           },
           {
+            "description": "If true, pipelines will not be run for the resulting transaction",
+            "in": "query",
+            "name": "skipPipeline",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
             "in": "path",
             "name": "namespace",
             "required": true,
@@ -6158,6 +6525,15 @@
             "description": "If true, prevents the transaction resulting from this request from being bundled with others.",
             "in": "query",
             "name": "disableBatching",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "If true, pipelines will not be run for the resulting transaction",
+            "in": "query",
+            "name": "skipPipeline",
             "schema": {
               "default": false,
               "type": "boolean"
@@ -6503,6 +6879,15 @@
             }
           },
           {
+            "description": "If true, pipelines will not be run for the resulting transaction",
+            "in": "query",
+            "name": "skipPipeline",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
             "description": "the namespace scope from which to perform the delete",
             "in": "path",
             "name": "namespace",
@@ -6666,6 +7051,15 @@
             }
           },
           {
+            "description": "If true, pipelines will not be run for the resulting transaction",
+            "in": "query",
+            "name": "skipPipeline",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
             "in": "path",
             "name": "namespace",
             "required": true,
@@ -6801,6 +7195,15 @@
             "description": "If true, prevents the transaction resulting from this request from being bundled with others.",
             "in": "query",
             "name": "disableBatching",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "If true, pipelines will not be run for the resulting transaction",
+            "in": "query",
+            "name": "skipPipeline",
             "schema": {
               "default": false,
               "type": "boolean"
@@ -6961,6 +7364,15 @@
             }
           },
           {
+            "description": "If true, pipelines will not be run for the resulting transaction",
+            "in": "query",
+            "name": "skipPipeline",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
             "in": "path",
             "name": "namespace",
             "required": true,
@@ -7039,6 +7451,15 @@
             "description": "If true, prevents the transaction resulting from this request from being bundled with others.",
             "in": "query",
             "name": "disableBatching",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "If true, pipelines will not be run for the resulting transaction",
+            "in": "query",
+            "name": "skipPipeline",
             "schema": {
               "default": false,
               "type": "boolean"
@@ -7340,887 +7761,6 @@
         ]
       }
     },
-    "/apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments": {
-      "delete": {
-        "operationId": "deleteAllRoutingpoliciesEdaNokiaComV1NamespaceTagsetdeployments",
-        "parameters": [
-          {
-            "description": "The detail level to keep in the transaction log for the transaction resulting from this request.",
-            "in": "query",
-            "name": "detailLevel",
-            "schema": {
-              "default": "standard",
-              "enum": [
-                "standard",
-                "detailed"
-              ],
-              "type": "string"
-            }
-          },
-          {
-            "description": "a label selector string to filter the set of CRs deleted based on CR labels",
-            "in": "query",
-            "name": "labelSelector",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "deprecated": true,
-            "description": "Deprecated: a label selector string to filter the set of CRs deleted based on CR labels",
-            "in": "query",
-            "name": "label-selector",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "If true, prevents the transaction resulting from this request from being bundled with others.",
-            "in": "query",
-            "name": "disableBatching",
-            "schema": {
-              "default": false,
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "the namespace scope from which to perform the delete",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/com.nokia.eda.routingpolicies.v1.TagSetDeploymentList"
-                }
-              },
-              "application/yaml": {
-                "schema": {
-                  "$ref": "#/components/schemas/com.nokia.eda.routingpolicies.v1.TagSetDeploymentList"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "default": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            },
-            "description": "Details of an error in response to an API REST request."
-          }
-        },
-        "summary": "Delete all instances of TagSetDeployment in the specified namespace.",
-        "tags": [
-          "apps"
-        ]
-      },
-      "get": {
-        "description": "The resulting resources can optionally be a subset of the resource content by using the \"fields\" query parameter.",
-        "operationId": "listRoutingpoliciesEdaNokiaComV1NamespaceTagsetdeployments",
-        "parameters": [
-          {
-            "description": "client information for streaming request",
-            "in": "query",
-            "name": "eventclient",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "stream information for streaming request",
-            "in": "query",
-            "name": "stream",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "a comma-separated list of resource fields to fetch/return.  If unspecified, all fields are fetched.  If empty, only key-fields are fetched.",
-            "in": "query",
-            "name": "fields",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "an EQL \"where\" expression that will be used to filter the set of resources returned.",
-            "in": "query",
-            "name": "filter",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "A label selector string to filter the results based on resource labels. If specified multiple times, the union of resources which satisfy a label-selector will be returned.",
-            "in": "query",
-            "name": "labelSelector",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "deprecated": true,
-            "description": "Deprecated: a label selector string to filter the results based on CR labels",
-            "in": "query",
-            "name": "label-selector",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "the namespace scope in which to operate",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/com.nokia.eda.routingpolicies.v1.TagSetDeploymentList"
-                }
-              },
-              "application/yaml": {
-                "schema": {
-                  "$ref": "#/components/schemas/com.nokia.eda.routingpolicies.v1.TagSetDeploymentList"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "default": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            },
-            "description": "Details of an error in response to an API REST request."
-          }
-        },
-        "summary": "list tagsetdeployments in namespace",
-        "tags": [
-          "apps"
-        ]
-      },
-      "post": {
-        "description": "create a TagSetDeployment",
-        "operationId": "createRoutingpoliciesEdaNokiaComV1NamespaceTagsetdeployments",
-        "parameters": [
-          {
-            "description": "The detail level to keep in the transaction log for the transaction resulting from this request.",
-            "in": "query",
-            "name": "detailLevel",
-            "schema": {
-              "default": "standard",
-              "enum": [
-                "standard",
-                "detailed"
-              ],
-              "type": "string"
-            }
-          },
-          {
-            "description": "If true, prevents the transaction resulting from this request from being bundled with others.",
-            "in": "query",
-            "name": "disableBatching",
-            "schema": {
-              "default": false,
-              "type": "boolean"
-            }
-          },
-          {
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/com.nokia.eda.routingpolicies.v1.TagSetDeployment"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/com.nokia.eda.routingpolicies.v1.TagSetDeployment"
-                }
-              },
-              "application/yaml": {
-                "schema": {
-                  "$ref": "#/components/schemas/com.nokia.eda.routingpolicies.v1.TagSetDeployment"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "default": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            },
-            "description": "Details of an error in response to an API REST request."
-          }
-        },
-        "tags": [
-          "apps"
-        ]
-      }
-    },
-    "/apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments/_deleted": {
-      "get": {
-        "operationId": "getDeletedRoutingpoliciesEdaNokiaComV1NamespaceTagsetdeployments",
-        "parameters": [
-          {
-            "description": "client information for streaming request",
-            "in": "query",
-            "name": "eventclient",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "stream information for streaming request",
-            "in": "query",
-            "name": "stream",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "the namespace scope in which to operate",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/com.nokia.eda.routingpolicies.v1.TagSetDeployment_DeletedResources"
-                }
-              },
-              "application/yaml": {
-                "schema": {
-                  "$ref": "#/components/schemas/com.nokia.eda.routingpolicies.v1.TagSetDeployment_DeletedResources"
-                }
-              }
-            },
-            "description": "Returns list of deleted resource entries"
-          },
-          "default": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            },
-            "description": "Details of an error in response to an API REST request."
-          }
-        },
-        "summary": "Get information about the instances of TagSetDeployment that have been deleted that existed in the specified namespace.",
-        "tags": [
-          "apps"
-        ]
-      }
-    },
-    "/apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments/{name}": {
-      "delete": {
-        "description": "delete the specified TagSetDeployment",
-        "operationId": "deleteRoutingpoliciesEdaNokiaComV1NamespaceTagsetdeployments",
-        "parameters": [
-          {
-            "description": "The detail level to keep in the transaction log for the transaction resulting from this request.",
-            "in": "query",
-            "name": "detailLevel",
-            "schema": {
-              "default": "standard",
-              "enum": [
-                "standard",
-                "detailed"
-              ],
-              "type": "string"
-            }
-          },
-          {
-            "description": "If true, prevents the transaction resulting from this request from being bundled with others.",
-            "in": "query",
-            "name": "disableBatching",
-            "schema": {
-              "default": false,
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "the namespace scope from which to perform the delete",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "name of the TagSetDeployment to delete",
-            "in": "path",
-            "name": "name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Status"
-                }
-              },
-              "application/yaml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Status"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "default": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            },
-            "description": "Details of an error in response to an API REST request."
-          }
-        },
-        "tags": [
-          "apps"
-        ]
-      },
-      "get": {
-        "description": "read the specified TagSetDeployment.  If a git hash query parameter\nis supplied, the resource as it existed at the time of the git hash\nwill be returned. Streaming is not supported when a particular revision\nis asked for.",
-        "operationId": "readRoutingpoliciesEdaNokiaComV1NamespaceTagsetdeployments",
-        "parameters": [
-          {
-            "description": "name of the TagSetDeployment",
-            "in": "path",
-            "name": "name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "client information for streaming request",
-            "in": "query",
-            "name": "eventclient",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "stream information for streaming request",
-            "in": "query",
-            "name": "stream",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "resource content will be returned as it was at the time of this git hash",
-            "in": "query",
-            "name": "hash",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "the namespace scope in which to operate",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/com.nokia.eda.routingpolicies.v1.TagSetDeployment"
-                }
-              },
-              "application/yaml": {
-                "schema": {
-                  "$ref": "#/components/schemas/com.nokia.eda.routingpolicies.v1.TagSetDeployment"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "default": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            },
-            "description": "Details of an error in response to an API REST request."
-          }
-        },
-        "tags": [
-          "apps"
-        ]
-      },
-      "patch": {
-        "description": "patch a TagSetDeployment",
-        "operationId": "patchRoutingpoliciesEdaNokiaComV1NamespaceTagsetdeployments",
-        "parameters": [
-          {
-            "description": "The detail level to keep in the transaction log for the transaction resulting from this request.",
-            "in": "query",
-            "name": "detailLevel",
-            "schema": {
-              "default": "standard",
-              "enum": [
-                "standard",
-                "detailed"
-              ],
-              "type": "string"
-            }
-          },
-          {
-            "description": "If true, prevents the transaction resulting from this request from being bundled with others.",
-            "in": "query",
-            "name": "disableBatching",
-            "schema": {
-              "default": false,
-              "type": "boolean"
-            }
-          },
-          {
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "path",
-            "name": "name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Patch"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/com.nokia.eda.routingpolicies.v1.TagSetDeployment"
-                }
-              },
-              "application/yaml": {
-                "schema": {
-                  "$ref": "#/components/schemas/com.nokia.eda.routingpolicies.v1.TagSetDeployment"
-                }
-              }
-            },
-            "description": "The response for a successful EDA resource patch operation."
-          },
-          "default": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            },
-            "description": "Details of an error in response to an API REST request."
-          }
-        },
-        "tags": [
-          "apps"
-        ]
-      },
-      "put": {
-        "description": "replace a TagSetDeployment",
-        "operationId": "replaceRoutingpoliciesEdaNokiaComV1NamespaceTagsetdeployments",
-        "parameters": [
-          {
-            "description": "The detail level to keep in the transaction log for the transaction resulting from this request.",
-            "in": "query",
-            "name": "detailLevel",
-            "schema": {
-              "default": "standard",
-              "enum": [
-                "standard",
-                "detailed"
-              ],
-              "type": "string"
-            }
-          },
-          {
-            "description": "If true, prevents the transaction resulting from this request from being bundled with others.",
-            "in": "query",
-            "name": "disableBatching",
-            "schema": {
-              "default": false,
-              "type": "boolean"
-            }
-          },
-          {
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "path",
-            "name": "name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/com.nokia.eda.routingpolicies.v1.TagSetDeployment"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/com.nokia.eda.routingpolicies.v1.TagSetDeployment"
-                }
-              },
-              "application/yaml": {
-                "schema": {
-                  "$ref": "#/components/schemas/com.nokia.eda.routingpolicies.v1.TagSetDeployment"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "default": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            },
-            "description": "Details of an error in response to an API REST request."
-          }
-        },
-        "tags": [
-          "apps"
-        ]
-      }
-    },
-    "/apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments/{name}/_revs": {
-      "get": {
-        "operationId": "getHistoryRoutingpoliciesEdaNokiaComV1NamespaceTagsetdeployments",
-        "parameters": [
-          {
-            "description": "name of the TagSetDeployment to retrieve",
-            "in": "path",
-            "name": "name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "the namespace scope from which to retrieve the result",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "client information for streaming request",
-            "in": "query",
-            "name": "eventclient",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "stream information for streaming request",
-            "in": "query",
-            "name": "stream",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "maximum number of history entries to return",
-            "in": "query",
-            "name": "limit",
-            "schema": {
-              "format": "uint64",
-              "minimum": 1,
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceHistory"
-                }
-              },
-              "application/yaml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceHistory"
-                }
-              }
-            },
-            "description": "Returns the change history of the specified resource"
-          },
-          "default": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            },
-            "description": "Details of an error in response to an API REST request."
-          }
-        },
-        "summary": "Get revision history for the specified namespaced TagSetDeployment.",
-        "tags": [
-          "apps"
-        ]
-      }
-    },
-    "/apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments/{name}/_targets": {
-      "get": {
-        "operationId": "getTargetsRoutingpoliciesEdaNokiaComV1NamespaceTagsetdeployments",
-        "parameters": [
-          {
-            "description": "name of the TagSetDeployment",
-            "in": "path",
-            "name": "name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "client information for streaming request",
-            "in": "query",
-            "name": "eventclient",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "stream information for streaming request",
-            "in": "query",
-            "name": "stream",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "the namespace scope in which to operate",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/IntentTargets"
-                }
-              },
-              "application/yaml": {
-                "schema": {
-                  "$ref": "#/components/schemas/IntentTargets"
-                }
-              }
-            },
-            "description": "Returns the list of intent targets for the specified TagSetDeployment resource."
-          },
-          "default": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            },
-            "description": "Details of an error in response to an API REST request."
-          }
-        },
-        "summary": "Get intent targets for the specified namespaced TagSetDeployment.",
-        "tags": [
-          "apps"
-        ]
-      }
-    },
-    "/apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments/{name}/_topology": {
-      "post": {
-        "operationId": "postTopologyRoutingpoliciesEdaNokiaComV1NamespaceTagsetdeployments",
-        "parameters": [
-          {
-            "description": "name of the TagSetDeployment to retrieve",
-            "in": "path",
-            "name": "name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "the namespace scope from which to retrieve the result",
-            "in": "path",
-            "name": "namespace",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "client information for streaming request",
-            "in": "query",
-            "name": "eventclient",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "stream information for streaming request",
-            "in": "query",
-            "name": "stream",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/K8STopologyRequest"
-              }
-            }
-          },
-          "description": "the details of topology to retrieve",
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceTopology"
-                }
-              },
-              "application/yaml": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceTopology"
-                }
-              }
-            },
-            "description": "Returns the topology of the specified resource"
-          },
-          "default": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            },
-            "description": "Details of an error in response to an API REST request."
-          }
-        },
-        "summary": "Retrieve the topology for the specified namespaced TagSetDeployment.",
-        "tags": [
-          "apps"
-        ]
-      }
-    },
     "/apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsets": {
       "delete": {
         "operationId": "deleteAllRoutingpoliciesEdaNokiaComV1NamespaceTagsets",
@@ -8259,6 +7799,15 @@
             "description": "If true, prevents the transaction resulting from this request from being bundled with others.",
             "in": "query",
             "name": "disableBatching",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "If true, pipelines will not be run for the resulting transaction",
+            "in": "query",
+            "name": "skipPipeline",
             "schema": {
               "default": false,
               "type": "boolean"
@@ -8428,6 +7977,15 @@
             }
           },
           {
+            "description": "If true, pipelines will not be run for the resulting transaction",
+            "in": "query",
+            "name": "skipPipeline",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
             "in": "path",
             "name": "namespace",
             "required": true,
@@ -8563,6 +8121,15 @@
             "description": "If true, prevents the transaction resulting from this request from being bundled with others.",
             "in": "query",
             "name": "disableBatching",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "If true, pipelines will not be run for the resulting transaction",
+            "in": "query",
+            "name": "skipPipeline",
             "schema": {
               "default": false,
               "type": "boolean"
@@ -8723,6 +8290,15 @@
             }
           },
           {
+            "description": "If true, pipelines will not be run for the resulting transaction",
+            "in": "query",
+            "name": "skipPipeline",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
             "in": "path",
             "name": "namespace",
             "required": true,
@@ -8801,6 +8377,15 @@
             "description": "If true, prevents the transaction resulting from this request from being bundled with others.",
             "in": "query",
             "name": "disableBatching",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "If true, pipelines will not be run for the resulting transaction",
+            "in": "query",
+            "name": "skipPipeline",
             "schema": {
               "default": false,
               "type": "boolean"
@@ -9273,94 +8858,6 @@
           }
         },
         "summary": "list prefixsets",
-        "tags": [
-          "apps"
-        ]
-      }
-    },
-    "/apps/routingpolicies.eda.nokia.com/v1/tagsetdeployments": {
-      "get": {
-        "description": "The resulting resources can optionally be a subset of the resource content by using the \"fields\" query parameter.",
-        "operationId": "listRoutingpoliciesEdaNokiaComV1Tagsetdeployments",
-        "parameters": [
-          {
-            "description": "client information for streaming request",
-            "in": "query",
-            "name": "eventclient",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "stream information for streaming request",
-            "in": "query",
-            "name": "stream",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "a comma-separated list of resource fields to fetch/return.  If unspecified, all fields are fetched.  If empty, only key-fields are fetched.",
-            "in": "query",
-            "name": "fields",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "an EQL \"where\" expression that will be used to filter the set of resources returned.",
-            "in": "query",
-            "name": "filter",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "A label selector string to filter the results based on resource labels. If specified multiple times, the union of resources which satisfy a label-selector will be returned.",
-            "in": "query",
-            "name": "labelSelector",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "deprecated": true,
-            "description": "Deprecated: a label selector string to filter the results based on CR labels",
-            "in": "query",
-            "name": "label-selector",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/com.nokia.eda.routingpolicies.v1.TagSetDeploymentList"
-                }
-              },
-              "application/yaml": {
-                "schema": {
-                  "$ref": "#/components/schemas/com.nokia.eda.routingpolicies.v1.TagSetDeploymentList"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "default": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            },
-            "description": "Details of an error in response to an API REST request."
-          }
-        },
-        "summary": "list tagsetdeployments",
         "tags": [
           "apps"
         ]

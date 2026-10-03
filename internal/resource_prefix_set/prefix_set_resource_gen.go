@@ -127,6 +127,7 @@ func PrefixSetResourceSchema(ctx context.Context) schema.Schema {
 				Attributes: map[string]schema.Attribute{
 					"configured_name": schema.StringAttribute{
 						Optional:            true,
+						Computed:            true,
 						Description:         "The name of the prefixset to configure on the device.",
 						MarkdownDescription: "The name of the prefixset to configure on the device.",
 					},
@@ -135,6 +136,7 @@ func PrefixSetResourceSchema(ctx context.Context) schema.Schema {
 							Attributes: map[string]schema.Attribute{
 								"end_range": schema.Int64Attribute{
 									Optional:            true,
+									Computed:            true,
 									Description:         "The end range when using a range to match prefixes.",
 									MarkdownDescription: "The end range when using a range to match prefixes.",
 									Validators: []validator.Int64{
@@ -143,6 +145,7 @@ func PrefixSetResourceSchema(ctx context.Context) schema.Schema {
 								},
 								"exact": schema.BoolAttribute{
 									Optional:            true,
+									Computed:            true,
 									Description:         "Indicates if it is an exact match. Ignores the StartRange and EndRange if this param is set.",
 									MarkdownDescription: "Indicates if it is an exact match. Ignores the StartRange and EndRange if this param is set.",
 								},
@@ -153,6 +156,7 @@ func PrefixSetResourceSchema(ctx context.Context) schema.Schema {
 								},
 								"start_range": schema.Int64Attribute{
 									Optional:            true,
+									Computed:            true,
 									Description:         "If specifying a range, this is the start of the range.",
 									MarkdownDescription: "If specifying a range, this is the start of the range.",
 									Validators: []validator.Int64{

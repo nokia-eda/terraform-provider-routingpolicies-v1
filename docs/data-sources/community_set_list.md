@@ -35,10 +35,6 @@ description: |-
 <a id="nestedatt--items"></a>
 ### Nested Schema for `items`
 
-Optional:
-
-- `spec` (Attributes) CommunitySetSpec defines the desired state of CommunitySet (see [below for nested schema](#nestedatt--items--spec))
-
 Read-Only:
 
 - `alarms` (Attributes) (see [below for nested schema](#nestedatt--items--alarms))
@@ -46,18 +42,8 @@ Read-Only:
 - `deviations` (Attributes) (see [below for nested schema](#nestedatt--items--deviations))
 - `kind` (String)
 - `metadata` (Attributes) (see [below for nested schema](#nestedatt--items--metadata))
+- `spec` (Attributes) CommunitySetSpec defines the desired state of CommunitySet (see [below for nested schema](#nestedatt--items--spec))
 - `status` (Attributes) CommunitySetStatus defines the observed state of CommunitySet (see [below for nested schema](#nestedatt--items--status))
-
-<a id="nestedatt--items--spec"></a>
-### Nested Schema for `items.spec`
-
-Optional:
-
-- `configured_name` (String) The name of the commmunityset to configure on the device.
-- `expression_match` (String) Options that determine the matching criteria that applies to the list of community members.
-- `match_set_options` (String) The matching criteria that applies to the Members list.
-- `members` (List of String) A standard BGP community value, regular expression or well-known name or else a large BGP community value or regular expression.
-
 
 <a id="nestedatt--items--alarms"></a>
 ### Nested Schema for `items.alarms`
@@ -87,6 +73,18 @@ Read-Only:
 - `labels` (Map of String)
 - `name` (String)
 - `namespace` (String)
+
+
+<a id="nestedatt--items--spec"></a>
+### Nested Schema for `items.spec`
+
+Read-Only:
+
+- `configured_name` (String) The name of the commmunityset to configure on the device.
+- `expression_match` (String) Options that determine the matching criteria that applies to the list of community members.
+- `match_set_options` (String) The matching criteria that applies to the Members list.
+- `members` (List of String) A standard BGP community value, regular expression or well-known name or else a large BGP community value or regular expression.
+- `type` (String) The type of community set.
 
 
 <a id="nestedatt--items--status"></a>

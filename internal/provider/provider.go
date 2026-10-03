@@ -272,8 +272,6 @@ func (p *routingpoliciesProvider) DataSources(ctx context.Context) []func() data
 		NewPrefixSetListDataSource,
 		NewResourceListDataSource,
 		NewTagSetDataSource,
-		NewTagSetDeploymentDataSource,
-		NewTagSetDeploymentListDataSource,
 		NewTagSetListDataSource,
 	}
 }
@@ -285,6 +283,5 @@ func (p *routingpoliciesProvider) Resources(ctx context.Context) []func() resour
 		NewPolicyResource,
 		NewPrefixSetResource,
 		NewTagSetResource,
-		NewTagSetDeploymentResource,
 	}
 }

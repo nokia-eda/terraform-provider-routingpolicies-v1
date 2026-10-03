@@ -23,7 +23,6 @@ description: |-
 ### Optional
 
 - `hash` (String) resource content will be returned as it was at the time of this git hash
-- `spec` (Attributes) TagSetSpec defines a set of Internal Route Tags that can be applied to routes for policy decisions. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -32,23 +31,8 @@ description: |-
 - `deviations` (Attributes) (see [below for nested schema](#nestedatt--deviations))
 - `kind` (String)
 - `metadata` (Attributes) (see [below for nested schema](#nestedatt--metadata))
+- `spec` (Attributes) TagSetSpec defines a set of Internal Route Tags that can be applied to routes for policy decisions. (see [below for nested schema](#nestedatt--spec))
 - `status` (Attributes) TagSetStatus defines the observed state of TagSet (see [below for nested schema](#nestedatt--status))
-
-<a id="nestedatt--spec"></a>
-### Nested Schema for `spec`
-
-Optional:
-
-- `tags` (Attributes List) List of route tags. Currently limited to one tag per set. (see [below for nested schema](#nestedatt--spec--tags))
-
-<a id="nestedatt--spec--tags"></a>
-### Nested Schema for `spec.tags`
-
-Optional:
-
-- `tag` (Number) The route tag value.
-
-
 
 <a id="nestedatt--alarms"></a>
 ### Nested Schema for `alarms`
@@ -78,6 +62,22 @@ Read-Only:
 - `labels` (Map of String)
 - `name` (String)
 - `namespace` (String)
+
+
+<a id="nestedatt--spec"></a>
+### Nested Schema for `spec`
+
+Read-Only:
+
+- `tags` (Attributes List) List of route tags. Currently limited to one tag per set. (see [below for nested schema](#nestedatt--spec--tags))
+
+<a id="nestedatt--spec--tags"></a>
+### Nested Schema for `spec.tags`
+
+Read-Only:
+
+- `tag` (Number) The route tag value.
+
 
 
 <a id="nestedatt--status"></a>

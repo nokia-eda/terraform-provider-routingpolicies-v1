@@ -48,17 +48,6 @@ Path,Method,Schema,Model Name,Supported,Datasource,Resource
 /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/prefixsets/{name}/_revs,GET,ResourceHistory,,false,false,false
 /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/prefixsets/{name}/_targets,GET,IntentTargets,,false,false,false
 /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/prefixsets/{name}/_topology,POST,K8STopologyRequest,,false,false,false
-/apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments,DELETE,com.nokia.eda.routingpolicies.v1.TagSetDeploymentList,,false,false,false
-/apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments,GET,com.nokia.eda.routingpolicies.v1.TagSetDeploymentList,tag_set_deployment_list,true,true,false
-/apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments,POST,com.nokia.eda.routingpolicies.v1.TagSetDeployment,tag_set_deployment,true,false,true
-/apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments/_deleted,GET,com.nokia.eda.routingpolicies.v1.TagSetDeployment_DeletedResources,,false,false,false
-/apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments/{name},DELETE,Status,tag_set_deployment,true,false,true
-/apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments/{name},GET,com.nokia.eda.routingpolicies.v1.TagSetDeployment,tag_set_deployment,true,true,true
-/apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments/{name},PATCH,com.nokia.eda.routingpolicies.v1.TagSetDeployment,,false,false,false
-/apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments/{name},PUT,com.nokia.eda.routingpolicies.v1.TagSetDeployment,tag_set_deployment,true,false,true
-/apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments/{name}/_revs,GET,ResourceHistory,,false,false,false
-/apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments/{name}/_targets,GET,IntentTargets,,false,false,false
-/apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsetdeployments/{name}/_topology,POST,K8STopologyRequest,,false,false,false
 /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsets,DELETE,com.nokia.eda.routingpolicies.v1.TagSetList,,false,false,false
 /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsets,GET,com.nokia.eda.routingpolicies.v1.TagSetList,tag_set_list,true,true,false
 /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsets,POST,com.nokia.eda.routingpolicies.v1.TagSet,tag_set,true,false,true
@@ -72,5 +61,4 @@ Path,Method,Schema,Model Name,Supported,Datasource,Resource
 /apps/routingpolicies.eda.nokia.com/v1/namespaces/{namespace}/tagsets/{name}/_topology,POST,K8STopologyRequest,,false,false,false
 /apps/routingpolicies.eda.nokia.com/v1/policys,GET,com.nokia.eda.routingpolicies.v1.PolicyList,,false,false,false
 /apps/routingpolicies.eda.nokia.com/v1/prefixsets,GET,com.nokia.eda.routingpolicies.v1.PrefixSetList,,false,false,false
-/apps/routingpolicies.eda.nokia.com/v1/tagsetdeployments,GET,com.nokia.eda.routingpolicies.v1.TagSetDeploymentList,,false,false,false
 /apps/routingpolicies.eda.nokia.com/v1/tagsets,GET,com.nokia.eda.routingpolicies.v1.TagSetList,,false,false,false

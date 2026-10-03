@@ -105,7 +105,7 @@ func TagSetDataSourceSchema(ctx context.Context) schema.Schema {
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"tag": schema.Int64Attribute{
-									Optional:            true,
+									Computed:            true,
 									Description:         "The route tag value.",
 									MarkdownDescription: "The route tag value.",
 								},
@@ -116,7 +116,7 @@ func TagSetDataSourceSchema(ctx context.Context) schema.Schema {
 								},
 							},
 						},
-						Optional:            true,
+						Computed:            true,
 						Description:         "List of route tags. Currently limited to one tag per set.",
 						MarkdownDescription: "List of route tags. Currently limited to one tag per set.",
 					},
@@ -126,7 +126,7 @@ func TagSetDataSourceSchema(ctx context.Context) schema.Schema {
 						AttrTypes: SpecValue{}.AttributeTypes(ctx),
 					},
 				},
-				Optional:            true,
+				Computed:            true,
 				Description:         "TagSetSpec defines a set of Internal Route Tags that can be applied to routes for policy decisions.",
 				MarkdownDescription: "TagSetSpec defines a set of Internal Route Tags that can be applied to routes for policy decisions.",
 			},

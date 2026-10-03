@@ -23,7 +23,6 @@ description: |-
 ### Optional
 
 - `hash` (String) resource content will be returned as it was at the time of this git hash
-- `spec` (Attributes) ASPathSetSpec defines the desired state of ASPathSet (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -32,16 +31,8 @@ description: |-
 - `deviations` (Attributes) (see [below for nested schema](#nestedatt--deviations))
 - `kind` (String)
 - `metadata` (Attributes) (see [below for nested schema](#nestedatt--metadata))
+- `spec` (Attributes) ASPathSetSpec defines the desired state of ASPathSet (see [below for nested schema](#nestedatt--spec))
 - `status` (Attributes) ASPathSetStatus defines the observed state of ASPathSet (see [below for nested schema](#nestedatt--status))
-
-<a id="nestedatt--spec"></a>
-### Nested Schema for `spec`
-
-Optional:
-
-- `members` (List of String) Members is a list of AS path regular expressions.
-- `regex_mode` (String) Defines how AS_PATH attribute is converted into a string for regex matching.
-
 
 <a id="nestedatt--alarms"></a>
 ### Nested Schema for `alarms`
@@ -71,6 +62,15 @@ Read-Only:
 - `labels` (Map of String)
 - `name` (String)
 - `namespace` (String)
+
+
+<a id="nestedatt--spec"></a>
+### Nested Schema for `spec`
+
+Read-Only:
+
+- `members` (List of String) Members is a list of AS path regular expressions.
+- `regex_mode` (String) Defines how AS_PATH attribute is converted into a string for regex matching.
 
 
 <a id="nestedatt--status"></a>

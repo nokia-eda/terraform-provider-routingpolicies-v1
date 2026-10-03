@@ -104,7 +104,7 @@ func PolicyListDataSourceSchema(ctx context.Context) schema.Schema {
 						"spec": schema.SingleNestedAttribute{
 							Attributes: map[string]schema.Attribute{
 								"configured_name": schema.StringAttribute{
-									Optional:            true,
+									Computed:            true,
 									Description:         "The name of the policy to configure on the device.",
 									MarkdownDescription: "The name of the policy to configure on the device.",
 								},
@@ -115,12 +115,12 @@ func PolicyListDataSourceSchema(ctx context.Context) schema.Schema {
 												"as_path_prepend": schema.SingleNestedAttribute{
 													Attributes: map[string]schema.Attribute{
 														"asn": schema.StringAttribute{
-															Optional:            true,
+															Computed:            true,
 															Description:         "AS number to prepend to the AS Path attributes. Can be an integer value or the keyword `Auto`.",
 															MarkdownDescription: "AS number to prepend to the AS Path attributes. Can be an integer value or the keyword `Auto`.",
 														},
 														"count": schema.Int64Attribute{
-															Optional:            true,
+															Computed:            true,
 															Description:         "Number of times to prepend the AS number.",
 															MarkdownDescription: "Number of times to prepend the AS number.",
 														},
@@ -130,18 +130,18 @@ func PolicyListDataSourceSchema(ctx context.Context) schema.Schema {
 															AttrTypes: AsPathPrependValue{}.AttributeTypes(ctx),
 														},
 													},
-													Optional:            true,
+													Computed:            true,
 													Description:         "AS number to prepend to the AS Path attributes.",
 													MarkdownDescription: "AS number to prepend to the AS Path attributes.",
 												},
 												"as_path_remove": schema.BoolAttribute{
-													Optional:            true,
+													Computed:            true,
 													Description:         "Clear the AS path to make it empty.",
 													MarkdownDescription: "Clear the AS path to make it empty.",
 												},
 												"as_path_replace": schema.ListAttribute{
 													ElementType:         types.Int64Type,
-													Optional:            true,
+													Computed:            true,
 													Description:         "Replace the existing AS path with a new AS_SEQUENCE containing the listed AS numbers.",
 													MarkdownDescription: "Replace the existing AS path with a new AS_SEQUENCE containing the listed AS numbers.",
 												},
@@ -149,19 +149,19 @@ func PolicyListDataSourceSchema(ctx context.Context) schema.Schema {
 													Attributes: map[string]schema.Attribute{
 														"add_sets": schema.ListAttribute{
 															ElementType:         types.StringType,
-															Optional:            true,
+															Computed:            true,
 															Description:         "List of community sets to add to the route.",
 															MarkdownDescription: "List of community sets to add to the route.",
 														},
 														"remove_sets": schema.ListAttribute{
 															ElementType:         types.StringType,
-															Optional:            true,
+															Computed:            true,
 															Description:         "List of community sets to remove from the route.",
 															MarkdownDescription: "List of community sets to remove from the route.",
 														},
 														"replace_sets": schema.ListAttribute{
 															ElementType:         types.StringType,
-															Optional:            true,
+															Computed:            true,
 															Description:         "List of community sets to replace the existing communities with. Cannot be combined with Add or Remove.",
 															MarkdownDescription: "List of community sets to replace the existing communities with. Cannot be combined with Add or Remove.",
 														},
@@ -171,24 +171,24 @@ func PolicyListDataSourceSchema(ctx context.Context) schema.Schema {
 															AttrTypes: CommunitiesValue{}.AttributeTypes(ctx),
 														},
 													},
-													Optional:            true,
+													Computed:            true,
 													Description:         "Modify BGP communities associated with the route using hybrid Community Sets.",
 													MarkdownDescription: "Modify BGP communities associated with the route using hybrid Community Sets.",
 												},
 												"med": schema.SingleNestedAttribute{
 													Attributes: map[string]schema.Attribute{
 														"numerical_value": schema.Int64Attribute{
-															Optional:            true,
+															Computed:            true,
 															Description:         "Fixed numerical value to set or add/subtract.",
 															MarkdownDescription: "Fixed numerical value to set or add/subtract.",
 														},
 														"operation": schema.StringAttribute{
-															Optional:            true,
+															Computed:            true,
 															Description:         "The operation to perform on the MED value.",
 															MarkdownDescription: "The operation to perform on the MED value.",
 														},
 														"value_type": schema.StringAttribute{
-															Optional:            true,
+															Computed:            true,
 															Description:         "Use a fixed value or an IGP metric to adjust the MED.",
 															MarkdownDescription: "Use a fixed value or an IGP metric to adjust the MED.",
 														},
@@ -198,19 +198,19 @@ func PolicyListDataSourceSchema(ctx context.Context) schema.Schema {
 															AttrTypes: MedValue{}.AttributeTypes(ctx),
 														},
 													},
-													Optional:            true,
+													Computed:            true,
 													Description:         "Set a new MED value.",
 													MarkdownDescription: "Set a new MED value.",
 												},
 												"next_hop": schema.SingleNestedAttribute{
 													Attributes: map[string]schema.Attribute{
 														"address": schema.StringAttribute{
-															Optional:            true,
+															Computed:            true,
 															Description:         "IP Address of the next hop. Only valid when NextHopType is set to FixedIP.",
 															MarkdownDescription: "IP Address of the next hop. Only valid when NextHopType is set to FixedIP.",
 														},
 														"type": schema.StringAttribute{
-															Optional:            true,
+															Computed:            true,
 															Description:         "Set next-hop to either a fixed IP address or to a local IP address of the device using a `Self` or `PeerIP` keyword.",
 															MarkdownDescription: "Set next-hop to either a fixed IP address or to a local IP address of the device using a `Self` or `PeerIP` keyword.",
 														},
@@ -220,17 +220,17 @@ func PolicyListDataSourceSchema(ctx context.Context) schema.Schema {
 															AttrTypes: NextHopValue{}.AttributeTypes(ctx),
 														},
 													},
-													Optional:            true,
+													Computed:            true,
 													Description:         "Override the BGP next-hop attribute.",
 													MarkdownDescription: "Override the BGP next-hop attribute.",
 												},
 												"set_local_preference": schema.Int64Attribute{
-													Optional:            true,
+													Computed:            true,
 													Description:         "Set a new LOCAL_PREF value for matching BGP routes.",
 													MarkdownDescription: "Set a new LOCAL_PREF value for matching BGP routes.",
 												},
 												"set_origin": schema.StringAttribute{
-													Optional:            true,
+													Computed:            true,
 													Description:         "Set a new ORIGIN attribute for matching BGP routes.",
 													MarkdownDescription: "Set a new ORIGIN attribute for matching BGP routes.",
 												},
@@ -240,19 +240,24 @@ func PolicyListDataSourceSchema(ctx context.Context) schema.Schema {
 													AttrTypes: BgpValue{}.AttributeTypes(ctx),
 												},
 											},
-											Optional:            true,
+											Computed:            true,
 											Description:         "Actions related to the BGP protocol.",
 											MarkdownDescription: "Actions related to the BGP protocol.",
 										},
 										"policy_result": schema.StringAttribute{
-											Optional:            true,
+											Computed:            true,
 											Description:         "Final disposition for the route.",
 											MarkdownDescription: "Final disposition for the route.",
+										},
+										"set_route_preference": schema.Int64Attribute{
+											Computed:            true,
+											Description:         "Set the RTM route preference (administrative distance) value.",
+											MarkdownDescription: "Set the RTM route preference (administrative distance) value.",
 										},
 										"tags": schema.SingleNestedAttribute{
 											Attributes: map[string]schema.Attribute{
 												"apply_tag_set": schema.StringAttribute{
-													Optional:            true,
+													Computed:            true,
 													Description:         "Add tags to the route from the referenced Tag Set.",
 													MarkdownDescription: "Add tags to the route from the referenced Tag Set.",
 												},
@@ -262,7 +267,7 @@ func PolicyListDataSourceSchema(ctx context.Context) schema.Schema {
 													AttrTypes: TagsValue{}.AttributeTypes(ctx),
 												},
 											},
-											Optional:            true,
+											Computed:            true,
 											Description:         "Manipulate internal route tags associated with the route.",
 											MarkdownDescription: "Manipulate internal route tags associated with the route.",
 										},
@@ -272,7 +277,7 @@ func PolicyListDataSourceSchema(ctx context.Context) schema.Schema {
 											AttrTypes: DefaultActionValue{}.AttributeTypes(ctx),
 										},
 									},
-									Optional:            true,
+									Computed:            true,
 									Description:         "The default action to apply if no other actions are defined.",
 									MarkdownDescription: "The default action to apply if no other actions are defined.",
 								},
@@ -286,12 +291,12 @@ func PolicyListDataSourceSchema(ctx context.Context) schema.Schema {
 															"as_path_prepend": schema.SingleNestedAttribute{
 																Attributes: map[string]schema.Attribute{
 																	"asn": schema.StringAttribute{
-																		Optional:            true,
+																		Computed:            true,
 																		Description:         "AS number to prepend to the AS Path attributes. Can be an integer value or the keyword `Auto`.",
 																		MarkdownDescription: "AS number to prepend to the AS Path attributes. Can be an integer value or the keyword `Auto`.",
 																	},
 																	"count": schema.Int64Attribute{
-																		Optional:            true,
+																		Computed:            true,
 																		Description:         "Number of times to prepend the AS number.",
 																		MarkdownDescription: "Number of times to prepend the AS number.",
 																	},
@@ -301,18 +306,18 @@ func PolicyListDataSourceSchema(ctx context.Context) schema.Schema {
 																		AttrTypes: AsPathPrepend1Value{}.AttributeTypes(ctx),
 																	},
 																},
-																Optional:            true,
+																Computed:            true,
 																Description:         "AS number to prepend to the AS Path attributes.",
 																MarkdownDescription: "AS number to prepend to the AS Path attributes.",
 															},
 															"as_path_remove": schema.BoolAttribute{
-																Optional:            true,
+																Computed:            true,
 																Description:         "Clear the AS path to make it empty.",
 																MarkdownDescription: "Clear the AS path to make it empty.",
 															},
 															"as_path_replace": schema.ListAttribute{
 																ElementType:         types.Int64Type,
-																Optional:            true,
+																Computed:            true,
 																Description:         "Replace the existing AS path with a new AS_SEQUENCE containing the listed AS numbers.",
 																MarkdownDescription: "Replace the existing AS path with a new AS_SEQUENCE containing the listed AS numbers.",
 															},
@@ -320,19 +325,19 @@ func PolicyListDataSourceSchema(ctx context.Context) schema.Schema {
 																Attributes: map[string]schema.Attribute{
 																	"add_sets": schema.ListAttribute{
 																		ElementType:         types.StringType,
-																		Optional:            true,
+																		Computed:            true,
 																		Description:         "List of community sets to add to the route.",
 																		MarkdownDescription: "List of community sets to add to the route.",
 																	},
 																	"remove_sets": schema.ListAttribute{
 																		ElementType:         types.StringType,
-																		Optional:            true,
+																		Computed:            true,
 																		Description:         "List of community sets to remove from the route.",
 																		MarkdownDescription: "List of community sets to remove from the route.",
 																	},
 																	"replace_sets": schema.ListAttribute{
 																		ElementType:         types.StringType,
-																		Optional:            true,
+																		Computed:            true,
 																		Description:         "List of community sets to replace the existing communities with. Cannot be combined with Add or Remove.",
 																		MarkdownDescription: "List of community sets to replace the existing communities with. Cannot be combined with Add or Remove.",
 																	},
@@ -342,24 +347,24 @@ func PolicyListDataSourceSchema(ctx context.Context) schema.Schema {
 																		AttrTypes: Communities1Value{}.AttributeTypes(ctx),
 																	},
 																},
-																Optional:            true,
+																Computed:            true,
 																Description:         "Modify BGP communities associated with the route using hybrid Community Sets.",
 																MarkdownDescription: "Modify BGP communities associated with the route using hybrid Community Sets.",
 															},
 															"med": schema.SingleNestedAttribute{
 																Attributes: map[string]schema.Attribute{
 																	"numerical_value": schema.Int64Attribute{
-																		Optional:            true,
+																		Computed:            true,
 																		Description:         "Fixed numerical value to set or add/subtract.",
 																		MarkdownDescription: "Fixed numerical value to set or add/subtract.",
 																	},
 																	"operation": schema.StringAttribute{
-																		Optional:            true,
+																		Computed:            true,
 																		Description:         "The operation to perform on the MED value.",
 																		MarkdownDescription: "The operation to perform on the MED value.",
 																	},
 																	"value_type": schema.StringAttribute{
-																		Optional:            true,
+																		Computed:            true,
 																		Description:         "Use a fixed value or an IGP metric to adjust the MED.",
 																		MarkdownDescription: "Use a fixed value or an IGP metric to adjust the MED.",
 																	},
@@ -369,19 +374,19 @@ func PolicyListDataSourceSchema(ctx context.Context) schema.Schema {
 																		AttrTypes: Med1Value{}.AttributeTypes(ctx),
 																	},
 																},
-																Optional:            true,
+																Computed:            true,
 																Description:         "Set a new MED value.",
 																MarkdownDescription: "Set a new MED value.",
 															},
 															"next_hop": schema.SingleNestedAttribute{
 																Attributes: map[string]schema.Attribute{
 																	"address": schema.StringAttribute{
-																		Optional:            true,
+																		Computed:            true,
 																		Description:         "IP Address of the next hop. Only valid when NextHopType is set to FixedIP.",
 																		MarkdownDescription: "IP Address of the next hop. Only valid when NextHopType is set to FixedIP.",
 																	},
 																	"type": schema.StringAttribute{
-																		Optional:            true,
+																		Computed:            true,
 																		Description:         "Set next-hop to either a fixed IP address or to a local IP address of the device using a `Self` or `PeerIP` keyword.",
 																		MarkdownDescription: "Set next-hop to either a fixed IP address or to a local IP address of the device using a `Self` or `PeerIP` keyword.",
 																	},
@@ -391,17 +396,17 @@ func PolicyListDataSourceSchema(ctx context.Context) schema.Schema {
 																		AttrTypes: NextHop1Value{}.AttributeTypes(ctx),
 																	},
 																},
-																Optional:            true,
+																Computed:            true,
 																Description:         "Override the BGP next-hop attribute.",
 																MarkdownDescription: "Override the BGP next-hop attribute.",
 															},
 															"set_local_preference": schema.Int64Attribute{
-																Optional:            true,
+																Computed:            true,
 																Description:         "Set a new LOCAL_PREF value for matching BGP routes.",
 																MarkdownDescription: "Set a new LOCAL_PREF value for matching BGP routes.",
 															},
 															"set_origin": schema.StringAttribute{
-																Optional:            true,
+																Computed:            true,
 																Description:         "Set a new ORIGIN attribute for matching BGP routes.",
 																MarkdownDescription: "Set a new ORIGIN attribute for matching BGP routes.",
 															},
@@ -411,19 +416,24 @@ func PolicyListDataSourceSchema(ctx context.Context) schema.Schema {
 																AttrTypes: Bgp1Value{}.AttributeTypes(ctx),
 															},
 														},
-														Optional:            true,
+														Computed:            true,
 														Description:         "Actions related to the BGP protocol.",
 														MarkdownDescription: "Actions related to the BGP protocol.",
 													},
 													"policy_result": schema.StringAttribute{
-														Optional:            true,
+														Computed:            true,
 														Description:         "Final disposition for the route.",
 														MarkdownDescription: "Final disposition for the route.",
+													},
+													"set_route_preference": schema.Int64Attribute{
+														Computed:            true,
+														Description:         "Set the RTM route preference (administrative distance) value.",
+														MarkdownDescription: "Set the RTM route preference (administrative distance) value.",
 													},
 													"tags": schema.SingleNestedAttribute{
 														Attributes: map[string]schema.Attribute{
 															"apply_tag_set": schema.StringAttribute{
-																Optional:            true,
+																Computed:            true,
 																Description:         "Add tags to the route from the referenced Tag Set.",
 																MarkdownDescription: "Add tags to the route from the referenced Tag Set.",
 															},
@@ -433,7 +443,7 @@ func PolicyListDataSourceSchema(ctx context.Context) schema.Schema {
 																AttrTypes: Tags1Value{}.AttributeTypes(ctx),
 															},
 														},
-														Optional:            true,
+														Computed:            true,
 														Description:         "Manipulate internal route tags associated with the route.",
 														MarkdownDescription: "Manipulate internal route tags associated with the route.",
 													},
@@ -443,7 +453,7 @@ func PolicyListDataSourceSchema(ctx context.Context) schema.Schema {
 														AttrTypes: ActionValue{}.AttributeTypes(ctx),
 													},
 												},
-												Optional:            true,
+												Computed:            true,
 												Description:         "Actions for routes that match the policy statement.",
 												MarkdownDescription: "Actions for routes that match the policy statement.",
 											},
@@ -454,17 +464,17 @@ func PolicyListDataSourceSchema(ctx context.Context) schema.Schema {
 															"as_path_match": schema.SingleNestedAttribute{
 																Attributes: map[string]schema.Attribute{
 																	"as_path_expression": schema.StringAttribute{
-																		Optional:            true,
+																		Computed:            true,
 																		Description:         "A singular regular expression string to match against AS_PATH objects. Mutually exclusive with the ASPathSet reference.",
 																		MarkdownDescription: "A singular regular expression string to match against AS_PATH objects. Mutually exclusive with the ASPathSet reference.",
 																	},
 																	"as_path_set": schema.StringAttribute{
-																		Optional:            true,
+																		Computed:            true,
 																		Description:         "Reference to an ASPathSet resource. Mutually exclusive with the ASPathExpression.",
 																		MarkdownDescription: "Reference to an ASPathSet resource. Mutually exclusive with the ASPathExpression.",
 																	},
 																	"match_set_options": schema.StringAttribute{
-																		Optional:            true,
+																		Computed:            true,
 																		Description:         "The matching criteria that applies to the members in the referenced set.",
 																		MarkdownDescription: "The matching criteria that applies to the members in the referenced set.",
 																	},
@@ -474,20 +484,42 @@ func PolicyListDataSourceSchema(ctx context.Context) schema.Schema {
 																		AttrTypes: AsPathMatchValue{}.AttributeTypes(ctx),
 																	},
 																},
-																Optional:            true,
+																Computed:            true,
 																Description:         "AS Path match criteria.",
 																MarkdownDescription: "AS Path match criteria.",
 															},
 															"community_set": schema.StringAttribute{
-																Optional:            true,
+																Computed:            true,
 																Description:         "Match conditions for BGP communities.",
 																MarkdownDescription: "Match conditions for BGP communities.",
 															},
 															"evpn_route_types": schema.ListAttribute{
 																ElementType:         types.Int64Type,
-																Optional:            true,
+																Computed:            true,
 																Description:         "Match conditions for EVPN route types.",
 																MarkdownDescription: "Match conditions for EVPN route types.",
+															},
+															"next_hop": schema.SingleNestedAttribute{
+																Attributes: map[string]schema.Attribute{
+																	"ip_address": schema.StringAttribute{
+																		Computed:            true,
+																		Description:         "Match the next-hop attribute to a specific IP address.",
+																		MarkdownDescription: "Match the next-hop attribute to a specific IP address.",
+																	},
+																	"prefix_set": schema.StringAttribute{
+																		Computed:            true,
+																		Description:         "Match the next-hop attribute to a specific group of IP addresses defined in a PrefixSet. Mutually exclusive with IPAddress.",
+																		MarkdownDescription: "Match the next-hop attribute to a specific group of IP addresses defined in a PrefixSet. Mutually exclusive with IPAddress.",
+																	},
+																},
+																CustomType: NextHop2Type{
+																	ObjectType: types.ObjectType{
+																		AttrTypes: NextHop2Value{}.AttributeTypes(ctx),
+																	},
+																},
+																Computed:            true,
+																Description:         "Match conditions for the BGP next-hop attribute.",
+																MarkdownDescription: "Match conditions for the BGP next-hop attribute.",
 															},
 														},
 														CustomType: Bgp2Type{
@@ -495,30 +527,30 @@ func PolicyListDataSourceSchema(ctx context.Context) schema.Schema {
 																AttrTypes: Bgp2Value{}.AttributeTypes(ctx),
 															},
 														},
-														Optional:            true,
+														Computed:            true,
 														Description:         "Configuration for BGP-specific policy match criteria.",
 														MarkdownDescription: "Configuration for BGP-specific policy match criteria.",
 													},
 													"families": schema.ListAttribute{
 														ElementType:         types.StringType,
-														Optional:            true,
+														Computed:            true,
 														Description:         "Address families that the route belongs to.",
 														MarkdownDescription: "Address families that the route belongs to.",
 													},
 													"prefix_set": schema.StringAttribute{
-														Optional:            true,
+														Computed:            true,
 														Description:         "Reference to a PrefixSet resource.",
 														MarkdownDescription: "Reference to a PrefixSet resource.",
 													},
 													"protocol": schema.StringAttribute{
-														Optional:            true,
+														Computed:            true,
 														Description:         "The route protocol type to match.",
 														MarkdownDescription: "The route protocol type to match.",
 													},
 													"tags": schema.SingleNestedAttribute{
 														Attributes: map[string]schema.Attribute{
 															"tag_set": schema.StringAttribute{
-																Optional:            true,
+																Computed:            true,
 																Description:         "Reference to a TagSet resource.",
 																MarkdownDescription: "Reference to a TagSet resource.",
 															},
@@ -528,7 +560,7 @@ func PolicyListDataSourceSchema(ctx context.Context) schema.Schema {
 																AttrTypes: Tags2Value{}.AttributeTypes(ctx),
 															},
 														},
-														Optional:            true,
+														Computed:            true,
 														Description:         "Match based on the internal route tags associated with the route.",
 														MarkdownDescription: "Match based on the internal route tags associated with the route.",
 													},
@@ -538,12 +570,12 @@ func PolicyListDataSourceSchema(ctx context.Context) schema.Schema {
 														AttrTypes: MatchValue{}.AttributeTypes(ctx),
 													},
 												},
-												Optional:            true,
+												Computed:            true,
 												Description:         "Match conditions of the policy statement.",
 												MarkdownDescription: "Match conditions of the policy statement.",
 											},
 											"name": schema.StringAttribute{
-												Optional:            true,
+												Computed:            true,
 												Description:         "Name of the policy statement.",
 												MarkdownDescription: "Name of the policy statement.",
 											},
@@ -554,7 +586,7 @@ func PolicyListDataSourceSchema(ctx context.Context) schema.Schema {
 											},
 										},
 									},
-									Optional:            true,
+									Computed:            true,
 									Description:         "List of policy statements.",
 									MarkdownDescription: "List of policy statements.",
 								},
@@ -564,7 +596,7 @@ func PolicyListDataSourceSchema(ctx context.Context) schema.Schema {
 									AttrTypes: SpecValue{}.AttributeTypes(ctx),
 								},
 							},
-							Optional:            true,
+							Computed:            true,
 							Description:         "Policy defines a set of rules and actions to manage network traffic or routing behavior, with statements that include matching conditions and actions, such as accepting or rejecting routes, or modifying route attributes like BGP parameters.",
 							MarkdownDescription: "Policy defines a set of rules and actions to manage network traffic or routing behavior, with statements that include matching conditions and actions, such as accepting or rejecting routes, or modifying route attributes like BGP parameters.",
 						},
@@ -3333,6 +3365,24 @@ func (t DefaultActionType) ValueFromObject(ctx context.Context, in basetypes.Obj
 			fmt.Sprintf(`policy_result expected to be basetypes.StringValue, was: %T`, policyResultAttribute))
 	}
 
+	setRoutePreferenceAttribute, ok := attributes["set_route_preference"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`set_route_preference is missing from object`)
+
+		return nil, diags
+	}
+
+	setRoutePreferenceVal, ok := setRoutePreferenceAttribute.(basetypes.Int64Value)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`set_route_preference expected to be basetypes.Int64Value, was: %T`, setRoutePreferenceAttribute))
+	}
+
 	tagsAttribute, ok := attributes["tags"]
 
 	if !ok {
@@ -3356,10 +3406,11 @@ func (t DefaultActionType) ValueFromObject(ctx context.Context, in basetypes.Obj
 	}
 
 	return DefaultActionValue{
-		Bgp:          bgpVal,
-		PolicyResult: policyResultVal,
-		Tags:         tagsVal,
-		state:        attr.ValueStateKnown,
+		Bgp:                bgpVal,
+		PolicyResult:       policyResultVal,
+		SetRoutePreference: setRoutePreferenceVal,
+		Tags:               tagsVal,
+		state:              attr.ValueStateKnown,
 	}, diags
 }
 
@@ -3462,6 +3513,24 @@ func NewDefaultActionValue(attributeTypes map[string]attr.Type, attributes map[s
 			fmt.Sprintf(`policy_result expected to be basetypes.StringValue, was: %T`, policyResultAttribute))
 	}
 
+	setRoutePreferenceAttribute, ok := attributes["set_route_preference"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`set_route_preference is missing from object`)
+
+		return NewDefaultActionValueUnknown(), diags
+	}
+
+	setRoutePreferenceVal, ok := setRoutePreferenceAttribute.(basetypes.Int64Value)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`set_route_preference expected to be basetypes.Int64Value, was: %T`, setRoutePreferenceAttribute))
+	}
+
 	tagsAttribute, ok := attributes["tags"]
 
 	if !ok {
@@ -3485,10 +3554,11 @@ func NewDefaultActionValue(attributeTypes map[string]attr.Type, attributes map[s
 	}
 
 	return DefaultActionValue{
-		Bgp:          bgpVal,
-		PolicyResult: policyResultVal,
-		Tags:         tagsVal,
-		state:        attr.ValueStateKnown,
+		Bgp:                bgpVal,
+		PolicyResult:       policyResultVal,
+		SetRoutePreference: setRoutePreferenceVal,
+		Tags:               tagsVal,
+		state:              attr.ValueStateKnown,
 	}, diags
 }
 
@@ -3560,14 +3630,15 @@ func (t DefaultActionType) ValueType(ctx context.Context) attr.Value {
 var _ basetypes.ObjectValuable = DefaultActionValue{}
 
 type DefaultActionValue struct {
-	Bgp          basetypes.ObjectValue `tfsdk:"bgp"`
-	PolicyResult basetypes.StringValue `tfsdk:"policy_result"`
-	Tags         basetypes.ObjectValue `tfsdk:"tags"`
-	state        attr.ValueState
+	Bgp                basetypes.ObjectValue `tfsdk:"bgp"`
+	PolicyResult       basetypes.StringValue `tfsdk:"policy_result"`
+	SetRoutePreference basetypes.Int64Value  `tfsdk:"set_route_preference"`
+	Tags               basetypes.ObjectValue `tfsdk:"tags"`
+	state              attr.ValueState
 }
 
 func (v DefaultActionValue) ToTerraformValue(ctx context.Context) (tftypes.Value, error) {
-	attrTypes := make(map[string]tftypes.Type, 3)
+	attrTypes := make(map[string]tftypes.Type, 4)
 
 	var val tftypes.Value
 	var err error
@@ -3576,6 +3647,7 @@ func (v DefaultActionValue) ToTerraformValue(ctx context.Context) (tftypes.Value
 		AttrTypes: BgpValue{}.AttributeTypes(ctx),
 	}.TerraformType(ctx)
 	attrTypes["policy_result"] = basetypes.StringType{}.TerraformType(ctx)
+	attrTypes["set_route_preference"] = basetypes.Int64Type{}.TerraformType(ctx)
 	attrTypes["tags"] = basetypes.ObjectType{
 		AttrTypes: TagsValue{}.AttributeTypes(ctx),
 	}.TerraformType(ctx)
@@ -3584,7 +3656,7 @@ func (v DefaultActionValue) ToTerraformValue(ctx context.Context) (tftypes.Value
 
 	switch v.state {
 	case attr.ValueStateKnown:
-		vals := make(map[string]tftypes.Value, 3)
+		vals := make(map[string]tftypes.Value, 4)
 
 		val, err = v.Bgp.ToTerraformValue(ctx)
 
@@ -3601,6 +3673,14 @@ func (v DefaultActionValue) ToTerraformValue(ctx context.Context) (tftypes.Value
 		}
 
 		vals["policy_result"] = val
+
+		val, err = v.SetRoutePreference.ToTerraformValue(ctx)
+
+		if err != nil {
+			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
+		}
+
+		vals["set_route_preference"] = val
 
 		val, err = v.Tags.ToTerraformValue(ctx)
 
@@ -3685,7 +3765,8 @@ func (v DefaultActionValue) ToObjectValue(ctx context.Context) (basetypes.Object
 		"bgp": basetypes.ObjectType{
 			AttrTypes: BgpValue{}.AttributeTypes(ctx),
 		},
-		"policy_result": basetypes.StringType{},
+		"policy_result":        basetypes.StringType{},
+		"set_route_preference": basetypes.Int64Type{},
 		"tags": basetypes.ObjectType{
 			AttrTypes: TagsValue{}.AttributeTypes(ctx),
 		},
@@ -3702,9 +3783,10 @@ func (v DefaultActionValue) ToObjectValue(ctx context.Context) (basetypes.Object
 	objVal, diags := types.ObjectValue(
 		attributeTypes,
 		map[string]attr.Value{
-			"bgp":           bgp,
-			"policy_result": v.PolicyResult,
-			"tags":          tags,
+			"bgp":                  bgp,
+			"policy_result":        v.PolicyResult,
+			"set_route_preference": v.SetRoutePreference,
+			"tags":                 tags,
 		})
 
 	return objVal, diags
@@ -3733,6 +3815,10 @@ func (v DefaultActionValue) Equal(o attr.Value) bool {
 		return false
 	}
 
+	if !v.SetRoutePreference.Equal(other.SetRoutePreference) {
+		return false
+	}
+
 	if !v.Tags.Equal(other.Tags) {
 		return false
 	}
@@ -3753,7 +3839,8 @@ func (v DefaultActionValue) AttributeTypes(ctx context.Context) map[string]attr.
 		"bgp": basetypes.ObjectType{
 			AttrTypes: BgpValue{}.AttributeTypes(ctx),
 		},
-		"policy_result": basetypes.StringType{},
+		"policy_result":        basetypes.StringType{},
+		"set_route_preference": basetypes.Int64Type{},
 		"tags": basetypes.ObjectType{
 			AttrTypes: TagsValue{}.AttributeTypes(ctx),
 		},
@@ -7213,6 +7300,24 @@ func (t ActionType) ValueFromObject(ctx context.Context, in basetypes.ObjectValu
 			fmt.Sprintf(`policy_result expected to be basetypes.StringValue, was: %T`, policyResultAttribute))
 	}
 
+	setRoutePreferenceAttribute, ok := attributes["set_route_preference"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`set_route_preference is missing from object`)
+
+		return nil, diags
+	}
+
+	setRoutePreferenceVal, ok := setRoutePreferenceAttribute.(basetypes.Int64Value)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`set_route_preference expected to be basetypes.Int64Value, was: %T`, setRoutePreferenceAttribute))
+	}
+
 	tags1Attribute, ok := attributes["tags"]
 
 	if !ok {
@@ -7236,10 +7341,11 @@ func (t ActionType) ValueFromObject(ctx context.Context, in basetypes.ObjectValu
 	}
 
 	return ActionValue{
-		Bgp1:         bgp1Val,
-		PolicyResult: policyResultVal,
-		Tags1:        tags1Val,
-		state:        attr.ValueStateKnown,
+		Bgp1:               bgp1Val,
+		PolicyResult:       policyResultVal,
+		SetRoutePreference: setRoutePreferenceVal,
+		Tags1:              tags1Val,
+		state:              attr.ValueStateKnown,
 	}, diags
 }
 
@@ -7342,6 +7448,24 @@ func NewActionValue(attributeTypes map[string]attr.Type, attributes map[string]a
 			fmt.Sprintf(`policy_result expected to be basetypes.StringValue, was: %T`, policyResultAttribute))
 	}
 
+	setRoutePreferenceAttribute, ok := attributes["set_route_preference"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`set_route_preference is missing from object`)
+
+		return NewActionValueUnknown(), diags
+	}
+
+	setRoutePreferenceVal, ok := setRoutePreferenceAttribute.(basetypes.Int64Value)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`set_route_preference expected to be basetypes.Int64Value, was: %T`, setRoutePreferenceAttribute))
+	}
+
 	tags1Attribute, ok := attributes["tags"]
 
 	if !ok {
@@ -7365,10 +7489,11 @@ func NewActionValue(attributeTypes map[string]attr.Type, attributes map[string]a
 	}
 
 	return ActionValue{
-		Bgp1:         bgp1Val,
-		PolicyResult: policyResultVal,
-		Tags1:        tags1Val,
-		state:        attr.ValueStateKnown,
+		Bgp1:               bgp1Val,
+		PolicyResult:       policyResultVal,
+		SetRoutePreference: setRoutePreferenceVal,
+		Tags1:              tags1Val,
+		state:              attr.ValueStateKnown,
 	}, diags
 }
 
@@ -7440,14 +7565,15 @@ func (t ActionType) ValueType(ctx context.Context) attr.Value {
 var _ basetypes.ObjectValuable = ActionValue{}
 
 type ActionValue struct {
-	Bgp1         basetypes.ObjectValue `tfsdk:"bgp"`
-	PolicyResult basetypes.StringValue `tfsdk:"policy_result"`
-	Tags1        basetypes.ObjectValue `tfsdk:"tags"`
-	state        attr.ValueState
+	Bgp1               basetypes.ObjectValue `tfsdk:"bgp"`
+	PolicyResult       basetypes.StringValue `tfsdk:"policy_result"`
+	SetRoutePreference basetypes.Int64Value  `tfsdk:"set_route_preference"`
+	Tags1              basetypes.ObjectValue `tfsdk:"tags"`
+	state              attr.ValueState
 }
 
 func (v ActionValue) ToTerraformValue(ctx context.Context) (tftypes.Value, error) {
-	attrTypes := make(map[string]tftypes.Type, 3)
+	attrTypes := make(map[string]tftypes.Type, 4)
 
 	var val tftypes.Value
 	var err error
@@ -7456,6 +7582,7 @@ func (v ActionValue) ToTerraformValue(ctx context.Context) (tftypes.Value, error
 		AttrTypes: Bgp1Value{}.AttributeTypes(ctx),
 	}.TerraformType(ctx)
 	attrTypes["policy_result"] = basetypes.StringType{}.TerraformType(ctx)
+	attrTypes["set_route_preference"] = basetypes.Int64Type{}.TerraformType(ctx)
 	attrTypes["tags"] = basetypes.ObjectType{
 		AttrTypes: Tags1Value{}.AttributeTypes(ctx),
 	}.TerraformType(ctx)
@@ -7464,7 +7591,7 @@ func (v ActionValue) ToTerraformValue(ctx context.Context) (tftypes.Value, error
 
 	switch v.state {
 	case attr.ValueStateKnown:
-		vals := make(map[string]tftypes.Value, 3)
+		vals := make(map[string]tftypes.Value, 4)
 
 		val, err = v.Bgp1.ToTerraformValue(ctx)
 
@@ -7481,6 +7608,14 @@ func (v ActionValue) ToTerraformValue(ctx context.Context) (tftypes.Value, error
 		}
 
 		vals["policy_result"] = val
+
+		val, err = v.SetRoutePreference.ToTerraformValue(ctx)
+
+		if err != nil {
+			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
+		}
+
+		vals["set_route_preference"] = val
 
 		val, err = v.Tags1.ToTerraformValue(ctx)
 
@@ -7565,7 +7700,8 @@ func (v ActionValue) ToObjectValue(ctx context.Context) (basetypes.ObjectValue, 
 		"bgp": basetypes.ObjectType{
 			AttrTypes: Bgp1Value{}.AttributeTypes(ctx),
 		},
-		"policy_result": basetypes.StringType{},
+		"policy_result":        basetypes.StringType{},
+		"set_route_preference": basetypes.Int64Type{},
 		"tags": basetypes.ObjectType{
 			AttrTypes: Tags1Value{}.AttributeTypes(ctx),
 		},
@@ -7582,9 +7718,10 @@ func (v ActionValue) ToObjectValue(ctx context.Context) (basetypes.ObjectValue, 
 	objVal, diags := types.ObjectValue(
 		attributeTypes,
 		map[string]attr.Value{
-			"bgp":           bgp1,
-			"policy_result": v.PolicyResult,
-			"tags":          tags1,
+			"bgp":                  bgp1,
+			"policy_result":        v.PolicyResult,
+			"set_route_preference": v.SetRoutePreference,
+			"tags":                 tags1,
 		})
 
 	return objVal, diags
@@ -7613,6 +7750,10 @@ func (v ActionValue) Equal(o attr.Value) bool {
 		return false
 	}
 
+	if !v.SetRoutePreference.Equal(other.SetRoutePreference) {
+		return false
+	}
+
 	if !v.Tags1.Equal(other.Tags1) {
 		return false
 	}
@@ -7633,7 +7774,8 @@ func (v ActionValue) AttributeTypes(ctx context.Context) map[string]attr.Type {
 		"bgp": basetypes.ObjectType{
 			AttrTypes: Bgp1Value{}.AttributeTypes(ctx),
 		},
-		"policy_result": basetypes.StringType{},
+		"policy_result":        basetypes.StringType{},
+		"set_route_preference": basetypes.Int64Type{},
 		"tags": basetypes.ObjectType{
 			AttrTypes: Tags1Value{}.AttributeTypes(ctx),
 		},
@@ -11255,6 +11397,24 @@ func (t Bgp2Type) ValueFromObject(ctx context.Context, in basetypes.ObjectValue)
 			fmt.Sprintf(`evpn_route_types expected to be basetypes.ListValue, was: %T`, evpnRouteTypesAttribute))
 	}
 
+	nextHop2Attribute, ok := attributes["next_hop"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`next_hop_2 is missing from object`)
+
+		return nil, diags
+	}
+
+	nextHop2Val, ok := nextHop2Attribute.(basetypes.ObjectValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`next_hop_2 expected to be basetypes.ObjectValue, was: %T`, nextHop2Attribute))
+	}
+
 	if diags.HasError() {
 		return nil, diags
 	}
@@ -11263,6 +11423,7 @@ func (t Bgp2Type) ValueFromObject(ctx context.Context, in basetypes.ObjectValue)
 		AsPathMatch:    asPathMatchVal,
 		CommunitySet:   communitySetVal,
 		EvpnRouteTypes: evpnRouteTypesVal,
+		NextHop2:       nextHop2Val,
 		state:          attr.ValueStateKnown,
 	}, diags
 }
@@ -11384,6 +11545,24 @@ func NewBgp2Value(attributeTypes map[string]attr.Type, attributes map[string]att
 			fmt.Sprintf(`evpn_route_types expected to be basetypes.ListValue, was: %T`, evpnRouteTypesAttribute))
 	}
 
+	nextHop2Attribute, ok := attributes["next_hop"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`next_hop_2 is missing from object`)
+
+		return NewBgp2ValueUnknown(), diags
+	}
+
+	nextHop2Val, ok := nextHop2Attribute.(basetypes.ObjectValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`next_hop_2 expected to be basetypes.ObjectValue, was: %T`, nextHop2Attribute))
+	}
+
 	if diags.HasError() {
 		return NewBgp2ValueUnknown(), diags
 	}
@@ -11392,6 +11571,7 @@ func NewBgp2Value(attributeTypes map[string]attr.Type, attributes map[string]att
 		AsPathMatch:    asPathMatchVal,
 		CommunitySet:   communitySetVal,
 		EvpnRouteTypes: evpnRouteTypesVal,
+		NextHop2:       nextHop2Val,
 		state:          attr.ValueStateKnown,
 	}, diags
 }
@@ -11467,11 +11647,12 @@ type Bgp2Value struct {
 	AsPathMatch    basetypes.ObjectValue `tfsdk:"as_path_match"`
 	CommunitySet   basetypes.StringValue `tfsdk:"community_set"`
 	EvpnRouteTypes basetypes.ListValue   `tfsdk:"evpn_route_types"`
+	NextHop2       basetypes.ObjectValue `tfsdk:"next_hop"`
 	state          attr.ValueState
 }
 
 func (v Bgp2Value) ToTerraformValue(ctx context.Context) (tftypes.Value, error) {
-	attrTypes := make(map[string]tftypes.Type, 3)
+	attrTypes := make(map[string]tftypes.Type, 4)
 
 	var val tftypes.Value
 	var err error
@@ -11483,12 +11664,15 @@ func (v Bgp2Value) ToTerraformValue(ctx context.Context) (tftypes.Value, error) 
 	attrTypes["evpn_route_types"] = basetypes.ListType{
 		ElemType: types.Int64Type,
 	}.TerraformType(ctx)
+	attrTypes["next_hop"] = basetypes.ObjectType{
+		AttrTypes: NextHop2Value{}.AttributeTypes(ctx),
+	}.TerraformType(ctx)
 
 	objectType := tftypes.Object{AttributeTypes: attrTypes}
 
 	switch v.state {
 	case attr.ValueStateKnown:
-		vals := make(map[string]tftypes.Value, 3)
+		vals := make(map[string]tftypes.Value, 4)
 
 		val, err = v.AsPathMatch.ToTerraformValue(ctx)
 
@@ -11513,6 +11697,14 @@ func (v Bgp2Value) ToTerraformValue(ctx context.Context) (tftypes.Value, error) 
 		}
 
 		vals["evpn_route_types"] = val
+
+		val, err = v.NextHop2.ToTerraformValue(ctx)
+
+		if err != nil {
+			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
+		}
+
+		vals["next_hop"] = val
 
 		if err := tftypes.ValidateValue(objectType, vals); err != nil {
 			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
@@ -11564,6 +11756,27 @@ func (v Bgp2Value) ToObjectValue(ctx context.Context) (basetypes.ObjectValue, di
 		)
 	}
 
+	var nextHop2 basetypes.ObjectValue
+
+	if v.NextHop2.IsNull() {
+		nextHop2 = types.ObjectNull(
+			NextHop2Value{}.AttributeTypes(ctx),
+		)
+	}
+
+	if v.NextHop2.IsUnknown() {
+		nextHop2 = types.ObjectUnknown(
+			NextHop2Value{}.AttributeTypes(ctx),
+		)
+	}
+
+	if !v.NextHop2.IsNull() && !v.NextHop2.IsUnknown() {
+		nextHop2 = types.ObjectValueMust(
+			NextHop2Value{}.AttributeTypes(ctx),
+			v.NextHop2.Attributes(),
+		)
+	}
+
 	var evpnRouteTypesVal basetypes.ListValue
 	switch {
 	case v.EvpnRouteTypes.IsUnknown():
@@ -11585,6 +11798,9 @@ func (v Bgp2Value) ToObjectValue(ctx context.Context) (basetypes.ObjectValue, di
 			"evpn_route_types": basetypes.ListType{
 				ElemType: types.Int64Type,
 			},
+			"next_hop": basetypes.ObjectType{
+				AttrTypes: NextHop2Value{}.AttributeTypes(ctx),
+			},
 		}), diags
 	}
 
@@ -11595,6 +11811,9 @@ func (v Bgp2Value) ToObjectValue(ctx context.Context) (basetypes.ObjectValue, di
 		"community_set": basetypes.StringType{},
 		"evpn_route_types": basetypes.ListType{
 			ElemType: types.Int64Type,
+		},
+		"next_hop": basetypes.ObjectType{
+			AttrTypes: NextHop2Value{}.AttributeTypes(ctx),
 		},
 	}
 
@@ -11612,6 +11831,7 @@ func (v Bgp2Value) ToObjectValue(ctx context.Context) (basetypes.ObjectValue, di
 			"as_path_match":    asPathMatch,
 			"community_set":    v.CommunitySet,
 			"evpn_route_types": evpnRouteTypesVal,
+			"next_hop":         nextHop2,
 		})
 
 	return objVal, diags
@@ -11644,6 +11864,10 @@ func (v Bgp2Value) Equal(o attr.Value) bool {
 		return false
 	}
 
+	if !v.NextHop2.Equal(other.NextHop2) {
+		return false
+	}
+
 	return true
 }
 
@@ -11663,6 +11887,9 @@ func (v Bgp2Value) AttributeTypes(ctx context.Context) map[string]attr.Type {
 		"community_set": basetypes.StringType{},
 		"evpn_route_types": basetypes.ListType{
 			ElemType: types.Int64Type,
+		},
+		"next_hop": basetypes.ObjectType{
+			AttrTypes: NextHop2Value{}.AttributeTypes(ctx),
 		},
 	}
 }
@@ -12098,6 +12325,385 @@ func (v AsPathMatchValue) AttributeTypes(ctx context.Context) map[string]attr.Ty
 		"as_path_expression": basetypes.StringType{},
 		"as_path_set":        basetypes.StringType{},
 		"match_set_options":  basetypes.StringType{},
+	}
+}
+
+var _ basetypes.ObjectTypable = NextHop2Type{}
+
+type NextHop2Type struct {
+	basetypes.ObjectType
+}
+
+func (t NextHop2Type) Equal(o attr.Type) bool {
+	other, ok := o.(NextHop2Type)
+
+	if !ok {
+		return false
+	}
+
+	return t.ObjectType.Equal(other.ObjectType)
+}
+
+func (t NextHop2Type) String() string {
+	return "NextHop2Type"
+}
+
+func (t NextHop2Type) ValueFromObject(ctx context.Context, in basetypes.ObjectValue) (basetypes.ObjectValuable, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
+	attributes := in.Attributes()
+
+	ipAddressAttribute, ok := attributes["ip_address"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`ip_address is missing from object`)
+
+		return nil, diags
+	}
+
+	ipAddressVal, ok := ipAddressAttribute.(basetypes.StringValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`ip_address expected to be basetypes.StringValue, was: %T`, ipAddressAttribute))
+	}
+
+	prefixSetAttribute, ok := attributes["prefix_set"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`prefix_set is missing from object`)
+
+		return nil, diags
+	}
+
+	prefixSetVal, ok := prefixSetAttribute.(basetypes.StringValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`prefix_set expected to be basetypes.StringValue, was: %T`, prefixSetAttribute))
+	}
+
+	if diags.HasError() {
+		return nil, diags
+	}
+
+	return NextHop2Value{
+		IpAddress: ipAddressVal,
+		PrefixSet: prefixSetVal,
+		state:     attr.ValueStateKnown,
+	}, diags
+}
+
+func NewNextHop2ValueNull() NextHop2Value {
+	return NextHop2Value{
+		state: attr.ValueStateNull,
+	}
+}
+
+func NewNextHop2ValueUnknown() NextHop2Value {
+	return NextHop2Value{
+		state: attr.ValueStateUnknown,
+	}
+}
+
+func NewNextHop2Value(attributeTypes map[string]attr.Type, attributes map[string]attr.Value) (NextHop2Value, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
+	// Reference: https://github.com/hashicorp/terraform-plugin-framework/issues/521
+	ctx := context.Background()
+
+	for name, attributeType := range attributeTypes {
+		attribute, ok := attributes[name]
+
+		if !ok {
+			diags.AddError(
+				"Missing NextHop2Value Attribute Value",
+				"While creating a NextHop2Value value, a missing attribute value was detected. "+
+					"A NextHop2Value must contain values for all attributes, even if null or unknown. "+
+					"This is always an issue with the provider and should be reported to the provider developers.\n\n"+
+					fmt.Sprintf("NextHop2Value Attribute Name (%s) Expected Type: %s", name, attributeType.String()),
+			)
+
+			continue
+		}
+
+		if !attributeType.Equal(attribute.Type(ctx)) {
+			diags.AddError(
+				"Invalid NextHop2Value Attribute Type",
+				"While creating a NextHop2Value value, an invalid attribute value was detected. "+
+					"A NextHop2Value must use a matching attribute type for the value. "+
+					"This is always an issue with the provider and should be reported to the provider developers.\n\n"+
+					fmt.Sprintf("NextHop2Value Attribute Name (%s) Expected Type: %s\n", name, attributeType.String())+
+					fmt.Sprintf("NextHop2Value Attribute Name (%s) Given Type: %s", name, attribute.Type(ctx)),
+			)
+		}
+	}
+
+	for name := range attributes {
+		_, ok := attributeTypes[name]
+
+		if !ok {
+			diags.AddError(
+				"Extra NextHop2Value Attribute Value",
+				"While creating a NextHop2Value value, an extra attribute value was detected. "+
+					"A NextHop2Value must not contain values beyond the expected attribute types. "+
+					"This is always an issue with the provider and should be reported to the provider developers.\n\n"+
+					fmt.Sprintf("Extra NextHop2Value Attribute Name: %s", name),
+			)
+		}
+	}
+
+	if diags.HasError() {
+		return NewNextHop2ValueUnknown(), diags
+	}
+
+	ipAddressAttribute, ok := attributes["ip_address"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`ip_address is missing from object`)
+
+		return NewNextHop2ValueUnknown(), diags
+	}
+
+	ipAddressVal, ok := ipAddressAttribute.(basetypes.StringValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`ip_address expected to be basetypes.StringValue, was: %T`, ipAddressAttribute))
+	}
+
+	prefixSetAttribute, ok := attributes["prefix_set"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`prefix_set is missing from object`)
+
+		return NewNextHop2ValueUnknown(), diags
+	}
+
+	prefixSetVal, ok := prefixSetAttribute.(basetypes.StringValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`prefix_set expected to be basetypes.StringValue, was: %T`, prefixSetAttribute))
+	}
+
+	if diags.HasError() {
+		return NewNextHop2ValueUnknown(), diags
+	}
+
+	return NextHop2Value{
+		IpAddress: ipAddressVal,
+		PrefixSet: prefixSetVal,
+		state:     attr.ValueStateKnown,
+	}, diags
+}
+
+func NewNextHop2ValueMust(attributeTypes map[string]attr.Type, attributes map[string]attr.Value) NextHop2Value {
+	object, diags := NewNextHop2Value(attributeTypes, attributes)
+
+	if diags.HasError() {
+		// This could potentially be added to the diag package.
+		diagsStrings := make([]string, 0, len(diags))
+
+		for _, diagnostic := range diags {
+			diagsStrings = append(diagsStrings, fmt.Sprintf(
+				"%s | %s | %s",
+				diagnostic.Severity(),
+				diagnostic.Summary(),
+				diagnostic.Detail()))
+		}
+
+		panic("NewNextHop2ValueMust received error(s): " + strings.Join(diagsStrings, "\n"))
+	}
+
+	return object
+}
+
+func (t NextHop2Type) ValueFromTerraform(ctx context.Context, in tftypes.Value) (attr.Value, error) {
+	if in.Type() == nil {
+		return NewNextHop2ValueNull(), nil
+	}
+
+	if !in.Type().Equal(t.TerraformType(ctx)) {
+		return nil, fmt.Errorf("expected %s, got %s", t.TerraformType(ctx), in.Type())
+	}
+
+	if !in.IsKnown() {
+		return NewNextHop2ValueUnknown(), nil
+	}
+
+	if in.IsNull() {
+		return NewNextHop2ValueNull(), nil
+	}
+
+	attributes := map[string]attr.Value{}
+
+	val := map[string]tftypes.Value{}
+
+	err := in.As(&val)
+
+	if err != nil {
+		return nil, err
+	}
+
+	for k, v := range val {
+		a, err := t.AttrTypes[k].ValueFromTerraform(ctx, v)
+
+		if err != nil {
+			return nil, err
+		}
+
+		attributes[k] = a
+	}
+
+	return NewNextHop2ValueMust(NextHop2Value{}.AttributeTypes(ctx), attributes), nil
+}
+
+func (t NextHop2Type) ValueType(ctx context.Context) attr.Value {
+	return NextHop2Value{}
+}
+
+var _ basetypes.ObjectValuable = NextHop2Value{}
+
+type NextHop2Value struct {
+	IpAddress basetypes.StringValue `tfsdk:"ip_address"`
+	PrefixSet basetypes.StringValue `tfsdk:"prefix_set"`
+	state     attr.ValueState
+}
+
+func (v NextHop2Value) ToTerraformValue(ctx context.Context) (tftypes.Value, error) {
+	attrTypes := make(map[string]tftypes.Type, 2)
+
+	var val tftypes.Value
+	var err error
+
+	attrTypes["ip_address"] = basetypes.StringType{}.TerraformType(ctx)
+	attrTypes["prefix_set"] = basetypes.StringType{}.TerraformType(ctx)
+
+	objectType := tftypes.Object{AttributeTypes: attrTypes}
+
+	switch v.state {
+	case attr.ValueStateKnown:
+		vals := make(map[string]tftypes.Value, 2)
+
+		val, err = v.IpAddress.ToTerraformValue(ctx)
+
+		if err != nil {
+			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
+		}
+
+		vals["ip_address"] = val
+
+		val, err = v.PrefixSet.ToTerraformValue(ctx)
+
+		if err != nil {
+			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
+		}
+
+		vals["prefix_set"] = val
+
+		if err := tftypes.ValidateValue(objectType, vals); err != nil {
+			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
+		}
+
+		return tftypes.NewValue(objectType, vals), nil
+	case attr.ValueStateNull:
+		return tftypes.NewValue(objectType, nil), nil
+	case attr.ValueStateUnknown:
+		return tftypes.NewValue(objectType, tftypes.UnknownValue), nil
+	default:
+		panic(fmt.Sprintf("unhandled Object state in ToTerraformValue: %s", v.state))
+	}
+}
+
+func (v NextHop2Value) IsNull() bool {
+	return v.state == attr.ValueStateNull
+}
+
+func (v NextHop2Value) IsUnknown() bool {
+	return v.state == attr.ValueStateUnknown
+}
+
+func (v NextHop2Value) String() string {
+	return "NextHop2Value"
+}
+
+func (v NextHop2Value) ToObjectValue(ctx context.Context) (basetypes.ObjectValue, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
+	attributeTypes := map[string]attr.Type{
+		"ip_address": basetypes.StringType{},
+		"prefix_set": basetypes.StringType{},
+	}
+
+	if v.IsNull() {
+		return types.ObjectNull(attributeTypes), diags
+	}
+
+	if v.IsUnknown() {
+		return types.ObjectUnknown(attributeTypes), diags
+	}
+
+	objVal, diags := types.ObjectValue(
+		attributeTypes,
+		map[string]attr.Value{
+			"ip_address": v.IpAddress,
+			"prefix_set": v.PrefixSet,
+		})
+
+	return objVal, diags
+}
+
+func (v NextHop2Value) Equal(o attr.Value) bool {
+	other, ok := o.(NextHop2Value)
+
+	if !ok {
+		return false
+	}
+
+	if v.state != other.state {
+		return false
+	}
+
+	if v.state != attr.ValueStateKnown {
+		return true
+	}
+
+	if !v.IpAddress.Equal(other.IpAddress) {
+		return false
+	}
+
+	if !v.PrefixSet.Equal(other.PrefixSet) {
+		return false
+	}
+
+	return true
+}
+
+func (v NextHop2Value) Type(ctx context.Context) attr.Type {
+	return NextHop2Type{
+		basetypes.ObjectType{
+			AttrTypes: v.AttributeTypes(ctx),
+		},
+	}
+}
+
+func (v NextHop2Value) AttributeTypes(ctx context.Context) map[string]attr.Type {
+	return map[string]attr.Type{
+		"ip_address": basetypes.StringType{},
+		"prefix_set": basetypes.StringType{},
 	}
 }
 

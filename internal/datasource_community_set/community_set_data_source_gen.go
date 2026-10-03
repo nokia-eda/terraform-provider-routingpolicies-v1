@@ -102,25 +102,30 @@ func CommunitySetDataSourceSchema(ctx context.Context) schema.Schema {
 			"spec": schema.SingleNestedAttribute{
 				Attributes: map[string]schema.Attribute{
 					"configured_name": schema.StringAttribute{
-						Optional:            true,
+						Computed:            true,
 						Description:         "The name of the commmunityset to configure on the device.",
 						MarkdownDescription: "The name of the commmunityset to configure on the device.",
 					},
 					"expression_match": schema.StringAttribute{
-						Optional:            true,
+						Computed:            true,
 						Description:         "Options that determine the matching criteria that applies to the list of community members.",
 						MarkdownDescription: "Options that determine the matching criteria that applies to the list of community members.",
 					},
 					"match_set_options": schema.StringAttribute{
-						Optional:            true,
+						Computed:            true,
 						Description:         "The matching criteria that applies to the Members list.",
 						MarkdownDescription: "The matching criteria that applies to the Members list.",
 					},
 					"members": schema.ListAttribute{
 						ElementType:         types.StringType,
-						Optional:            true,
+						Computed:            true,
 						Description:         "A standard BGP community value, regular expression or well-known name or else a large BGP community value or regular expression.",
 						MarkdownDescription: "A standard BGP community value, regular expression or well-known name or else a large BGP community value or regular expression.",
+					},
+					"type": schema.StringAttribute{
+						Computed:            true,
+						Description:         "The type of community set.",
+						MarkdownDescription: "The type of community set.",
 					},
 				},
 				CustomType: SpecType{
@@ -128,7 +133,7 @@ func CommunitySetDataSourceSchema(ctx context.Context) schema.Schema {
 						AttrTypes: SpecValue{}.AttributeTypes(ctx),
 					},
 				},
-				Optional:            true,
+				Computed:            true,
 				Description:         "CommunitySetSpec defines the desired state of CommunitySet",
 				MarkdownDescription: "CommunitySetSpec defines the desired state of CommunitySet",
 			},
@@ -1621,6 +1626,24 @@ func (t SpecType) ValueFromObject(ctx context.Context, in basetypes.ObjectValue)
 			fmt.Sprintf(`members expected to be basetypes.ListValue, was: %T`, membersAttribute))
 	}
 
+	typeAttribute, ok := attributes["type"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`type is missing from object`)
+
+		return nil, diags
+	}
+
+	typeVal, ok := typeAttribute.(basetypes.StringValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`type expected to be basetypes.StringValue, was: %T`, typeAttribute))
+	}
+
 	if diags.HasError() {
 		return nil, diags
 	}
@@ -1630,6 +1653,7 @@ func (t SpecType) ValueFromObject(ctx context.Context, in basetypes.ObjectValue)
 		ExpressionMatch: expressionMatchVal,
 		MatchSetOptions: matchSetOptionsVal,
 		Members:         membersVal,
+		SpecType:        typeVal,
 		state:           attr.ValueStateKnown,
 	}, diags
 }
@@ -1769,6 +1793,24 @@ func NewSpecValue(attributeTypes map[string]attr.Type, attributes map[string]att
 			fmt.Sprintf(`members expected to be basetypes.ListValue, was: %T`, membersAttribute))
 	}
 
+	typeAttribute, ok := attributes["type"]
+
+	if !ok {
+		diags.AddError(
+			"Attribute Missing",
+			`type is missing from object`)
+
+		return NewSpecValueUnknown(), diags
+	}
+
+	typeVal, ok := typeAttribute.(basetypes.StringValue)
+
+	if !ok {
+		diags.AddError(
+			"Attribute Wrong Type",
+			fmt.Sprintf(`type expected to be basetypes.StringValue, was: %T`, typeAttribute))
+	}
+
 	if diags.HasError() {
 		return NewSpecValueUnknown(), diags
 	}
@@ -1778,6 +1820,7 @@ func NewSpecValue(attributeTypes map[string]attr.Type, attributes map[string]att
 		ExpressionMatch: expressionMatchVal,
 		MatchSetOptions: matchSetOptionsVal,
 		Members:         membersVal,
+		SpecType:        typeVal,
 		state:           attr.ValueStateKnown,
 	}, diags
 }
@@ -1854,11 +1897,12 @@ type SpecValue struct {
 	ExpressionMatch basetypes.StringValue `tfsdk:"expression_match"`
 	MatchSetOptions basetypes.StringValue `tfsdk:"match_set_options"`
 	Members         basetypes.ListValue   `tfsdk:"members"`
+	SpecType        basetypes.StringValue `tfsdk:"type"`
 	state           attr.ValueState
 }
 
 func (v SpecValue) ToTerraformValue(ctx context.Context) (tftypes.Value, error) {
-	attrTypes := make(map[string]tftypes.Type, 4)
+	attrTypes := make(map[string]tftypes.Type, 5)
 
 	var val tftypes.Value
 	var err error
@@ -1869,12 +1913,13 @@ func (v SpecValue) ToTerraformValue(ctx context.Context) (tftypes.Value, error) 
 	attrTypes["members"] = basetypes.ListType{
 		ElemType: types.StringType,
 	}.TerraformType(ctx)
+	attrTypes["type"] = basetypes.StringType{}.TerraformType(ctx)
 
 	objectType := tftypes.Object{AttributeTypes: attrTypes}
 
 	switch v.state {
 	case attr.ValueStateKnown:
-		vals := make(map[string]tftypes.Value, 4)
+		vals := make(map[string]tftypes.Value, 5)
 
 		val, err = v.ConfiguredName.ToTerraformValue(ctx)
 
@@ -1907,6 +1952,14 @@ func (v SpecValue) ToTerraformValue(ctx context.Context) (tftypes.Value, error) 
 		}
 
 		vals["members"] = val
+
+		val, err = v.SpecType.ToTerraformValue(ctx)
+
+		if err != nil {
+			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
+		}
+
+		vals["type"] = val
 
 		if err := tftypes.ValidateValue(objectType, vals); err != nil {
 			return tftypes.NewValue(objectType, tftypes.UnknownValue), err
@@ -1957,6 +2010,7 @@ func (v SpecValue) ToObjectValue(ctx context.Context) (basetypes.ObjectValue, di
 			"members": basetypes.ListType{
 				ElemType: types.StringType,
 			},
+			"type": basetypes.StringType{},
 		}), diags
 	}
 
@@ -1967,6 +2021,7 @@ func (v SpecValue) ToObjectValue(ctx context.Context) (basetypes.ObjectValue, di
 		"members": basetypes.ListType{
 			ElemType: types.StringType,
 		},
+		"type": basetypes.StringType{},
 	}
 
 	if v.IsNull() {
@@ -1984,6 +2039,7 @@ func (v SpecValue) ToObjectValue(ctx context.Context) (basetypes.ObjectValue, di
 			"expression_match":  v.ExpressionMatch,
 			"match_set_options": v.MatchSetOptions,
 			"members":           membersVal,
+			"type":              v.SpecType,
 		})
 
 	return objVal, diags
@@ -2020,6 +2076,10 @@ func (v SpecValue) Equal(o attr.Value) bool {
 		return false
 	}
 
+	if !v.SpecType.Equal(other.SpecType) {
+		return false
+	}
+
 	return true
 }
 
@@ -2039,6 +2099,7 @@ func (v SpecValue) AttributeTypes(ctx context.Context) map[string]attr.Type {
 		"members": basetypes.ListType{
 			ElemType: types.StringType,
 		},
+		"type": basetypes.StringType{},
 	}
 }
 

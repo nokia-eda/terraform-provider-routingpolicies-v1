@@ -127,11 +127,13 @@ func AsPathSetResourceSchema(ctx context.Context) schema.Schema {
 					"members": schema.ListAttribute{
 						ElementType:         types.StringType,
 						Optional:            true,
+						Computed:            true,
 						Description:         "Members is a list of AS path regular expressions.",
 						MarkdownDescription: "Members is a list of AS path regular expressions.",
 					},
 					"regex_mode": schema.StringAttribute{
 						Optional:            true,
+						Computed:            true,
 						Description:         "Defines how AS_PATH attribute is converted into a string for regex matching.",
 						MarkdownDescription: "Defines how AS_PATH attribute is converted into a string for regex matching.",
 						Validators: []validator.String{

@@ -53,6 +53,7 @@ Optional:
 - `expression_match` (String) Options that determine the matching criteria that applies to the list of community members.
 - `match_set_options` (String) The matching criteria that applies to the Members list.
 - `members` (List of String) A standard BGP community value, regular expression or well-known name or else a large BGP community value or regular expression.
+- `type` (String) The type of community set.
 
 
 <a id="nestedatt--alarms"></a>

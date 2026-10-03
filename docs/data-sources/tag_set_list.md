@@ -35,10 +35,6 @@ description: |-
 <a id="nestedatt--items"></a>
 ### Nested Schema for `items`
 
-Optional:
-
-- `spec` (Attributes) TagSetSpec defines a set of Internal Route Tags that can be applied to routes for policy decisions. (see [below for nested schema](#nestedatt--items--spec))
-
 Read-Only:
 
 - `alarms` (Attributes) (see [below for nested schema](#nestedatt--items--alarms))
@@ -46,23 +42,8 @@ Read-Only:
 - `deviations` (Attributes) (see [below for nested schema](#nestedatt--items--deviations))
 - `kind` (String)
 - `metadata` (Attributes) (see [below for nested schema](#nestedatt--items--metadata))
+- `spec` (Attributes) TagSetSpec defines a set of Internal Route Tags that can be applied to routes for policy decisions. (see [below for nested schema](#nestedatt--items--spec))
 - `status` (Attributes) TagSetStatus defines the observed state of TagSet (see [below for nested schema](#nestedatt--items--status))
-
-<a id="nestedatt--items--spec"></a>
-### Nested Schema for `items.spec`
-
-Optional:
-
-- `tags` (Attributes List) List of route tags. Currently limited to one tag per set. (see [below for nested schema](#nestedatt--items--spec--tags))
-
-<a id="nestedatt--items--spec--tags"></a>
-### Nested Schema for `items.spec.tags`
-
-Optional:
-
-- `tag` (Number) The route tag value.
-
-
 
 <a id="nestedatt--items--alarms"></a>
 ### Nested Schema for `items.alarms`
@@ -92,6 +73,22 @@ Read-Only:
 - `labels` (Map of String)
 - `name` (String)
 - `namespace` (String)
+
+
+<a id="nestedatt--items--spec"></a>
+### Nested Schema for `items.spec`
+
+Read-Only:
+
+- `tags` (Attributes List) List of route tags. Currently limited to one tag per set. (see [below for nested schema](#nestedatt--items--spec--tags))
+
+<a id="nestedatt--items--spec--tags"></a>
+### Nested Schema for `items.spec.tags`
+
+Read-Only:
+
+- `tag` (Number) The route tag value.
+
 
 
 <a id="nestedatt--items--status"></a>

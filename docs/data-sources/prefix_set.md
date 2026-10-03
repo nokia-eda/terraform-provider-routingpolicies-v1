@@ -23,7 +23,6 @@ description: |-
 ### Optional
 
 - `hash` (String) resource content will be returned as it was at the time of this git hash
-- `spec` (Attributes) PrefixSet defines a collection of IP prefixes, which may include specific CIDR blocks or a range of prefixes. This set is typically used for matching routes or implementing routing policies. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -32,27 +31,8 @@ description: |-
 - `deviations` (Attributes) (see [below for nested schema](#nestedatt--deviations))
 - `kind` (String)
 - `metadata` (Attributes) (see [below for nested schema](#nestedatt--metadata))
+- `spec` (Attributes) PrefixSet defines a collection of IP prefixes, which may include specific CIDR blocks or a range of prefixes. This set is typically used for matching routes or implementing routing policies. (see [below for nested schema](#nestedatt--spec))
 - `status` (Attributes) PrefixSetStatus defines the observed state of PrefixSet. (see [below for nested schema](#nestedatt--status))
-
-<a id="nestedatt--spec"></a>
-### Nested Schema for `spec`
-
-Optional:
-
-- `configured_name` (String) The name of the prefixset to configure on the device.
-- `prefixes` (Attributes List) List of IPv4 or IPv6 prefixes in CIDR notation. (see [below for nested schema](#nestedatt--spec--prefixes))
-
-<a id="nestedatt--spec--prefixes"></a>
-### Nested Schema for `spec.prefixes`
-
-Optional:
-
-- `end_range` (Number) The end range when using a range to match prefixes.
-- `exact` (Boolean) Indicates if it is an exact match. Ignores the StartRange and EndRange if this param is set.
-- `prefix` (String) The IPv4 or IPv6 prefix in CIDR notation with mask.
-- `start_range` (Number) If specifying a range, this is the start of the range.
-
-
 
 <a id="nestedatt--alarms"></a>
 ### Nested Schema for `alarms`
@@ -82,6 +62,26 @@ Read-Only:
 - `labels` (Map of String)
 - `name` (String)
 - `namespace` (String)
+
+
+<a id="nestedatt--spec"></a>
+### Nested Schema for `spec`
+
+Read-Only:
+
+- `configured_name` (String) The name of the prefixset to configure on the device.
+- `prefixes` (Attributes List) List of IPv4 or IPv6 prefixes in CIDR notation. (see [below for nested schema](#nestedatt--spec--prefixes))
+
+<a id="nestedatt--spec--prefixes"></a>
+### Nested Schema for `spec.prefixes`
+
+Read-Only:
+
+- `end_range` (Number) The end range when using a range to match prefixes.
+- `exact` (Boolean) Indicates if it is an exact match. Ignores the StartRange and EndRange if this param is set.
+- `prefix` (String) The IPv4 or IPv6 prefix in CIDR notation with mask.
+- `start_range` (Number) If specifying a range, this is the start of the range.
+
 
 
 <a id="nestedatt--status"></a>
